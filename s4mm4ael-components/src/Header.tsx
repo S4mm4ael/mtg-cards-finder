@@ -18,11 +18,10 @@ const Header = () => {
   return (
     <div className="app-header">
       <div className="app-header__title">{getCurrentTitle()}</div>
-      <div className="app-header__search-bar">Search bar</div>
       <div className="app-header__navigation">
         <ul className="header-list">
           <li className="header-list__item">
-            <a href="/home">Home</a>
+            <a href="/main">Main page</a>
           </li>
           <li className="header-list__item">
             <a href="/about">About</a>

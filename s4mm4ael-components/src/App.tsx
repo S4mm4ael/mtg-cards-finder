@@ -1,12 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import Header from 'Header';
-import Home from 'Home';
+import Main from 'Main';
 import NotFoundPage from 'notFoundPage';
 import About from 'About';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Redirect from 'react-router-dom';
 
 function App() {
   return (
@@ -14,8 +12,8 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="home" element={<Home />} />
+        <Route path="/" element={<Main />} />
+        <Route path="main" element={<Main />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
