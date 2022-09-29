@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Header.css';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
 
   const getCurrentTitle = () => {
     switch (location.pathname) {
-      case '/':
+      case '/home':
       default:
         return 'Home page';
       case '/about':
@@ -18,6 +18,17 @@ const Header = () => {
   return (
     <div className="app-header">
       <div className="app-header__title">{getCurrentTitle()}</div>
+      <div className="app-header__search-bar">Search bar</div>
+      <div className="app-header__navigation">
+        <ul className="header-list">
+          <li className="header-list__item">
+            <a href="/home">Home</a>
+          </li>
+          <li className="header-list__item">
+            <a href="/about">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

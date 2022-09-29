@@ -1,0 +1,22 @@
+.app-header{
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  min-height: 50px;
+  max-height: 100px;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 10px 5px 5px rgb(119, 119, 119);
+  color: white;
+}
+.app-header__title{
+  font-weight: 600;
+  color: blueviolet;
+}
+.header-list{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  list-style: none;
+}
