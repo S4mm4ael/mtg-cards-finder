@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
 import About from './About';
 
 describe('when rendered', () => {
-  it('should contain About text', () => {
+  it('should contain About section', () => {
     render(<About />);
-    const result = screen.getByText(/Hi! My name is Semion/);
+    const result = document.getElementById('about-section');
     expect(result).toBeInTheDocument();
   });
 });
