@@ -1,6 +1,6 @@
 import React from 'react';
 
-function About() {
+function About(): JSX.Element {
   return (
     <div>
       <h3>Hi! My name is Semion</h3>

@@ -2,12 +2,12 @@ import React from 'react';
 import './Header.css';
 import { useLocation } from 'react-router-dom';
 
-const Header = () => {
+function Header(): JSX.Element {
   const location = useLocation();
+  const path: string = location.pathname;
 
   const getCurrentTitle = () => {
-    console.log(window.location.href);
-    switch (location.pathname) {
+    switch (path) {
       case '/main':
         return 'Main page';
       case '/about':
@@ -36,5 +36,5 @@ const Header = () => {
       </div>
     </div>
   );
-};
+}
 export default Header;

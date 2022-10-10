@@ -1,6 +1,6 @@
 import React from 'react';
 import './Search.css';
-const Search = () => {
+function Search(): JSX.Element {
   return (
     <div className="wrap">
       <div className="search">
@@ -11,6 +11,6 @@ const Search = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Search;

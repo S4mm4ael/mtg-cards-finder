@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 class NotFoundPage extends React.Component {
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <p style={{ textAlign: 'center' }}>
