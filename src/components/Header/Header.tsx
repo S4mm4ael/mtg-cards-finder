@@ -6,12 +6,14 @@ const Header = () => {
   const location = useLocation();
 
   const getCurrentTitle = () => {
+    console.log(window.location.href);
     switch (location.pathname) {
-      case '/home':
-      default:
-        return 'Home page';
+      case '/main':
+        return 'Main page';
       case '/about':
         return 'About';
+      default:
+        return '404';
     }
   };
 
@@ -21,10 +23,14 @@ const Header = () => {
       <div className="app-header__navigation">
         <ul className="header-list">
           <li className="header-list__item">
-            <a href="/main">Main page</a>
+            <a id="main-page" href="/main">
+              Main page
+            </a>
           </li>
           <li className="header-list__item">
-            <a href="/about">About</a>
+            <a id="about-page" href="/about">
+              About
+            </a>
           </li>
         </ul>
       </div>

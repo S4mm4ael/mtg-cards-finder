@@ -7,7 +7,9 @@ class NotFoundPage extends React.Component {
         <p style={{ textAlign: 'center' }}>
           <h2>Wrong place, man</h2>
           <h3>ERROR 404</h3>
-          <Link to="/home">Go to Home </Link>
+          <Link className="active-page" to="/main">
+            Go to Main
+          </Link>
         </p>
       </div>
     );
