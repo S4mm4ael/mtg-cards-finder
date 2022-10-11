@@ -1,11 +1,4 @@
-const setLocalStorage = (query = '') => {
-  const searchItems = {
-    lastQuery: '',
-  };
-  searchItems.lastQuery = query;
-
-  if (!localStorage.getItem('searchItems')) {
-    localStorage.setItem('searchItems', JSON.stringify(searchItems));
-  }
-};
+function setLocalStorage(query: string) {
+  localStorage.setItem('lastQuery', query);
+}
 export default setLocalStorage;
