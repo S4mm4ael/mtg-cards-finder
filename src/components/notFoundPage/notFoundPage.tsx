@@ -4,13 +4,11 @@ class NotFoundPage extends React.Component {
   render(): JSX.Element {
     return (
       <div>
-        <p style={{ textAlign: 'center' }}>
-          <h2>Wrong place, man</h2>
-          <h3>ERROR 404</h3>
-          <Link className="active-page" to="/main">
-            Go to Main
-          </Link>
-        </p>
+        <h2>Wrong place, man</h2>
+        <h3>ERROR 404</h3>
+        <Link className="active-page" to="/main">
+          Go to Main
+        </Link>
       </div>
     );
   }
