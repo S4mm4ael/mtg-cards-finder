@@ -1,16 +1,8 @@
 import React from 'react';
 import './Search.css';
+import setLocalStorage from './setLocalStorage';
 
 function Search(): JSX.Element {
-  const searchQuery = 'searchQuery';
-  const searchData = 'Hello world';
-
-  const setLocalStorage = (id: string, data: string) => {
-    window.localStorage.setItem(id, JSON.stringify(data));
-  };
-
-  setLocalStorage(searchQuery, searchData);
-
   return (
     <div className="search-wrap">
       <div id="search" className="search">
