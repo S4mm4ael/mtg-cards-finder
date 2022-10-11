@@ -6,14 +6,12 @@ const localStorageMock = {
   clear: jest.fn(),
 };
 
-global.localStorage = localStorageMock;
+global.localStorage = localStorageMock as unknown as Storage;
 
 test('setLocalStorage should set items to localStorage', () => {
-  setLocalStorage();
-  const items = JSON.parse(localStorage.getItem('items'));
-  expect(items).toEqual([
-    {
-      name: 'Item One',
-    },
-  ]);
+  setLocalStorage('chicken');
+  const items = JSON.parse(localStorage.getItem('searchItems') || '{}');
+  expect(items).toEqual({
+    lastQuery: 'chicken',
+  });
 });

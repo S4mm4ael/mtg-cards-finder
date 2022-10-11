@@ -1,7 +1,7 @@
 import React from 'react';
 import './Search.css';
 import setLocalStorage from './setLocalStorage';
-
+setLocalStorage();
 function Search(): JSX.Element {
   return (
     <div className="search-wrap">
