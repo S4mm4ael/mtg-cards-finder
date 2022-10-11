@@ -1,4 +1,4 @@
-import setLocalStorage from './setLocalStorage';
+import { setLocalStorage } from './setLocalStorage';
 
 const localStorageMock = {
   getItem: jest.fn(),

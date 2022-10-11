@@ -1,4 +1,6 @@
-function setLocalStorage(query: string) {
+export function setLocalStorage(query: string): void {
   localStorage.setItem('lastQuery', query);
 }
-export default setLocalStorage;
+export function getLocalStorage(): string | null {
+  return localStorage.getItem('lastQuery');
+}
