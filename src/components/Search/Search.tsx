@@ -5,9 +5,7 @@ function Search(): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLocalStorage(event.target.value);
   }
-  function getChange() {
-    return getLocalStorage();
-  }
+
   return (
     <div className="search-wrap">
       <div id="search" className="search">
@@ -17,7 +15,7 @@ function Search(): JSX.Element {
           className="searchTerm"
           placeholder="What are you looking for?"
           onChange={handleChange}
-          value={getChange}
+          defaultValue={getLocalStorage()}
         />
         <button type="submit" className="searchButton">
           <i className="fa fa-search"></i>

@@ -8,10 +8,8 @@ const localStorageMock = {
 
 global.localStorage = localStorageMock as unknown as Storage;
 
-test('setLocalStorage should set items to localStorage', () => {
+test('setLocalStorage should set and get items to/from localStorage', () => {
   setLocalStorage('chicken');
-  const items = JSON.parse(localStorage.getItem('searchItems') || '{}');
-  expect(items).toEqual({
-    lastQuery: 'chicken',
-  });
+  const items = localStorage.getItem('lastQuery') || '{}';
+  expect(items).toEqual('chicken');
 });
