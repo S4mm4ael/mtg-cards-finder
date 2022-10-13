@@ -1,10 +1,10 @@
 import React from 'react';
-import './Header.css';
+import styles from './Header.module.css';
 
 function Header(): JSX.Element {
   return (
-    <div id="navigation" className="app-header__navigation">
-      <ul className="header-list">
+    <div id="navigation" className="styles.app-header__navigation">
+      <ul className={styles.header__list}>
         <li className="header-list__item">
           <a id="main-page" href="/main">
             Main page

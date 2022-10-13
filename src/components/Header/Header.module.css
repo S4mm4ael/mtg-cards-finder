@@ -1,4 +1,4 @@
-.app-header{
+.header{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,16 +9,16 @@
   box-shadow: 10px 5px 5px rgb(119, 119, 119);
   color: white;
 }
-.app-header__title{
+.header__title{
   font-weight: 600;
   color: blueviolet;
 }
-.header-list{
+.header__list{
   display: flex;
   flex-direction: row;
   gap: 20px;
   list-style: none;
 }
-.active-page{
+.active__page{
   color: blueviolet;
 }

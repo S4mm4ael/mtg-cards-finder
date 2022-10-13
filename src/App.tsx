@@ -3,7 +3,8 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import NotFoundPage from './components/notFoundPage/notFoundPage';
 import About from './components/About/About';
-import './App.css';
+import stylesApp from './App.module.css';
+import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 function App() {
@@ -20,9 +21,9 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="app-header">
-        <div className="app-header__title">{getCurrentTitle()}</div>
+    <div className={stylesApp.App}>
+      <div className={styles.header}>
+        <div className={styles.header__title}>{getCurrentTitle()}</div>
         <Header />
       </div>
       <Routes>
