@@ -1,32 +1,37 @@
 export const cardArray = [
   {
+    id: 1,
     title: 'Knight Armiger',
     price: 60,
-    fracton: 'Chaos Knights',
+    fraction: 'Chaos Knights',
     imageUrl: '/assets/img/ck.jpg',
   },
   {
+    id: 2,
     title: 'Battle Sisters Squad',
     price: 50,
-    fracton: 'Adepta Sororitas',
+    fraction: 'Adepta Sororitas',
     imageUrl: '/assets/img/as.jpg',
   },
   {
+    id: 3,
     title: 'Makari',
     price: 15,
-    fracton: 'Orks',
+    fraction: 'Orks',
     imageUrl: '/assets/img/ork.jpg',
   },
   {
+    id: 4,
     title: 'Trojan Valoris',
     price: 40,
-    fracton: 'Adepta Custodes',
+    fraction: 'Adepta Custodes',
     imageUrl: '/assets/img/ac.jpg',
   },
   {
+    id: 5,
     title: 'Deathwing sergeant',
     price: 30,
-    fracton: 'Dark Angels',
+    fraction: 'Dark Angels',
     imageUrl: '/assets/img/da.jpg',
   },
 ];
