@@ -39,8 +39,5 @@ body{
 
 .search__wrap{
   width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  box-shadow: 10px 5px 5px rgb(119 119 119);
 }

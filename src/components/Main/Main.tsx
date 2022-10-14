@@ -4,14 +4,12 @@ import { Card } from 'components/Card/Card';
 
 function Main(): JSX.Element {
   return (
-    <>
+    <main>
       <Search />
-      <main>
-        <section className="card__section">
-          <Card />
-        </section>
-      </main>
-    </>
+      <section className="card__section">
+        <Card />
+      </section>
+    </main>
   );
 }
 export default Main;
