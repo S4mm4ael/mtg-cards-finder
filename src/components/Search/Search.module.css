@@ -8,11 +8,15 @@ body{
 .search {
   width: 100%;
   display: flex;
+  transition: .3s;
+}
+.search:hover{
+  transform: scale(1.05);
 }
 
 .searchTerm {
   width: 100%;
-  border: 3px solid blueviolet;
+  border: 3px solid red;
   border-right: none;
   padding: 5px;
   height: 20px;
@@ -22,16 +26,15 @@ body{
 }
 
 .searchTerm:focus{
-  color: blueviolet;
+  color: red;
 }
 
 .searchButton {
+  border: 2px solid red ;
   width: 40px;
   height: 36px;
-  border: 1px solid blueviolet;
-  background: blueviolet;
+  background: red;
   text-align: center;
-  color: #fff;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
@@ -39,5 +42,4 @@ body{
 
 .search__wrap{
   width: 30%;
-  box-shadow: 10px 5px 5px rgb(119 119 119);
 }

@@ -18,6 +18,10 @@ gap: 20;
   box-shadow: 10px 5px 5px rgb(119 119 119);
   align-items: center;
   cursor: pointer;
+  transition: .3s;
+}
+.card:hover{
+  transform: scale(1.05);
 }
 .card__img{
   border-radius: 10px;

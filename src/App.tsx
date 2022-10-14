@@ -23,6 +23,7 @@ function App() {
   return (
     <div className={stylesApp.App}>
       <div className={styles.header}>
+        <img className={styles.logo} src="./logo.png" alt="logo" />
         <div className={styles.header__title}>{getCurrentTitle()}</div>
         <Header />
       </div>

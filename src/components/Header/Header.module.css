@@ -11,7 +11,9 @@
 }
 .header__title{
   font-weight: 600;
-  color: blueviolet;
+  color: red;
+  margin-left: 10px;
+  margin-right: auto;
 }
 .header__list{
   display: flex;
@@ -21,4 +23,8 @@
 }
 .active__page{
   color: blueviolet;
+}
+.logo{
+  height: 70px;
+  
 }
