@@ -24,7 +24,7 @@ export const cardArray = [
     id: 4,
     title: 'Trojan Valoris',
     price: 40,
-    fraction: 'Adepta Custodes',
+    fraction: 'Adeptus Custodes',
     imageUrl: '/assets/img/ac.jpg',
   },
   {

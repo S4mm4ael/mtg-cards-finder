@@ -2,14 +2,6 @@ import React from 'react';
 import styles from './Card.module.css';
 import { cardArray } from './cardData';
 
-// interface ICard {
-//   id: number;
-//   title: string;
-//   imageUrl: string;
-//   price: number;
-//   fraction: string;
-// }
-
 export function Card(): JSX.Element {
   const id = 0;
   return (
