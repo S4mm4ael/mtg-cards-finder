@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Card.module.css';
+import '../../index.css';
 import { cardArray } from './cardData';
 
 export function Card({ id }: { id: number }): JSX.Element {
@@ -14,21 +15,29 @@ export function Card({ id }: { id: number }): JSX.Element {
       />
 
       <span className={styles.card__header}>Colors:</span>
-      <b>{cardArray[id].colors}</b>
+      <div className={styles.color__wrapper}>
+        {cardArray[id].colors.map((color) => (
+          <div
+            style={{ backgroundColor: `${color}` }}
+            key={color}
+            className={styles.card__color}
+          ></div>
+        ))}
+      </div>
+
       <span className={styles.card__header}>Type(s):</span>
-      <b>{cardArray[id].types}</b>
+      {cardArray[id].types.map((type) => (
+        <b key={type}>{type}</b>
+      ))}
       <span className={styles.card__header}>FAQ:</span>
       <b> {cardArray[id].date} </b>
       <span className={styles.card__header}>Availability:</span>
       <div className="row">
-        {
-          //Check if message failed
-          cardArray[id].incollection === false ? (
-            <i className="fa-solid fa-xmark"></i>
-          ) : (
-            <i className="fa-solid fa-check"></i>
-          )
-        }
+        {cardArray[id].incollection === false ? (
+          <i className="fa-solid fa-xmark"></i>
+        ) : (
+          <i className="fa-solid fa-check"></i>
+        )}
       </div>
     </div>
   );
