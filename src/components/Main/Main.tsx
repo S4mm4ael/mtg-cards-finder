@@ -1,6 +1,5 @@
 import React from 'react';
 import Search from '../Search/Search';
-import AddCardForm from '../AddCardForm/AddCardForm';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { cardArray } from 'components/Card/cardData';

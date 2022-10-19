@@ -12,6 +12,11 @@ function Header(): JSX.Element {
           </Link>
         </li>
         <li className="header-list__item">
+          <Link id="add-page" to="/addcard">
+            Create
+          </Link>
+        </li>
+        <li className="header-list__item">
           <Link id="about-page" to="/about">
             About
           </Link>

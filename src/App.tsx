@@ -6,6 +6,7 @@ import About from './components/About/About';
 import stylesApp from './App.module.css';
 import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import AddCardForm from './components/AddCardForm/AddCardForm';
 
 function App() {
   const location = useLocation();
@@ -29,8 +30,9 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="main" element={<Main />} />
-        <Route path="about" element={<About />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/addcard" element={<AddCardForm />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
