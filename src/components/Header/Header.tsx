@@ -16,6 +16,11 @@ function Header(): JSX.Element {
             About
           </Link>
         </li>
+        <li className="header-list__item">
+          <Link id="404-page" to="/404">
+            404
+          </Link>
+        </li>
       </ul>
     </div>
   );
