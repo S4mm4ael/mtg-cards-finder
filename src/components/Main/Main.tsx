@@ -10,7 +10,7 @@ function Main(): JSX.Element {
       <Search />
       <section className={styles.card__section}>
         {cardArray.map((item, curId) => (
-          <Card key={item.title} id={curId} />
+          <Card key={item.name} id={curId} />
         ))}
       </section>
     </main>
