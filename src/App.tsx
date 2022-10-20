@@ -5,7 +5,7 @@ import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
 import stylesApp from './App.module.css';
 import styles from './components/Header/Header.module.css';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './components/AddCardForm/AddCardForm';
 
 function App() {
@@ -16,6 +16,10 @@ function App() {
     switch (path) {
       case '/about':
         return 'About';
+      case '/':
+        return 'Main';
+      case '/addcard':
+        return 'Create';
       default:
         return '';
     }
@@ -24,7 +28,9 @@ function App() {
   return (
     <div className={stylesApp.App}>
       <div className={styles.header}>
-        <img className={styles.logo} src="./logo.png" alt="logo" />
+        <Link id="main-page" to="/">
+          <img className={styles.logo} src="./logo.png" alt="logo" />
+        </Link>
         <div className={styles.header__title}>{getCurrentTitle()}</div>
         <Header />
       </div>

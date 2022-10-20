@@ -59,6 +59,10 @@ function AddCardForm(): JSX.Element {
             Enter the date!
           </span>
         </label>
+        <label className={styles.add__checkbox}>
+          Availability:
+          <input type="checkbox" id="color-1" name="color" value="blue" />
+        </label>
       </form>
     </section>
   );
