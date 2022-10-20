@@ -7,7 +7,7 @@ function Header(): JSX.Element {
     <div id="navigation" className="styles.app-header__navigation">
       <ul className={styles.header__list}>
         <li className="header-list__item">
-          <Link id="main-page" to="/main">
+          <Link id="main-page" to="/">
             Main page
           </Link>
         </li>
