@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-class NotFoundPage extends React.Component {
+class NotFound extends React.Component {
   render(): JSX.Element {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div
+        id="not-found"
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
         <h2>Wrong place, man</h2>
         <img
           src="https://cdn11.bigcommerce.com/s-3b5vpig99v/images/stencil/1280x1280/products/523529/984396/BlankCard03_BLANK__38209.1650320115.jpg?c=2"
@@ -19,4 +22,4 @@ class NotFoundPage extends React.Component {
     );
   }
 }
-export default NotFoundPage;
+export default NotFound;
