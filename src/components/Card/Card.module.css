@@ -53,4 +53,7 @@ justify-content: center;
   border-radius: 5px;
   border: 1px black solid ;
 }
-
+.color__wrapper{
+  display: flex;
+  flex-direction: row;
+}

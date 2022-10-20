@@ -1,12 +1,46 @@
+.add__section{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.add__table{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+.add__text{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 1.2rem;
+  gap: 20px;
+}
 .add__checkbox{
  display: flex;
+ justify-content: space-between;
  flex-direction: row;
  gap: 20px;
+ font-size: 1.2rem;
+}
+.add__table{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(220, 210, 230, 0.5);
+    border-radius: 20px;
+    box-shadow: 10px 5px 5px rgb(119 119 119);
+    
 }
 .card__color{
-  height: 10px;
-  width: 10px;
-  border-radius: 5px;
+  height: 15px;
+  width: 15px;
+  border-radius: 7.5px;
   border: 1px black solid ;
 }
 .card__checkbox{
@@ -15,4 +49,31 @@
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
+  font-size: 1.2rem;
+}
+label{
+  width: 500px;
+}
+.textbox{
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.color__wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.color__label{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 40px;
+  width: 20px;
+}
+.checkbox__wrapper{
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 380px;
 }
