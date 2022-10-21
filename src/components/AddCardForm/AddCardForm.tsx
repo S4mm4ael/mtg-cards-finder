@@ -3,6 +3,10 @@ import './checkbox.css';
 import styles from './AddCardForm.module.css';
 
 function AddCardForm(): JSX.Element {
+  function setActive(el: EventTarget) {
+    console.log(el);
+  }
+
   return (
     <section className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
@@ -19,35 +23,95 @@ function AddCardForm(): JSX.Element {
           <div className={styles.checkbox__wrapper}>
             <div className={styles.card__checkbox}>
               <label className={styles.color__label}>
-                <div style={{ backgroundColor: `blue` }} className={styles.card__color}></div>
-                <input type="checkbox" id="color-1" name="color" value="blue" />
+                <div
+                  style={{ backgroundColor: `blue` }}
+                  className={styles.card__color}
+                  onClick={(el) => {
+                    setActive(el.target);
+                  }}
+                ></div>
+                <input
+                  className={styles.hidden__checkbox}
+                  type="checkbox"
+                  id="color-1"
+                  name="color"
+                  value="blue"
+                />
               </label>
             </div>
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div style={{ backgroundColor: `red` }} className={styles.card__color}></div>
-                <input type="checkbox" id="color-2" name="color" value="red" />
+                <div
+                  style={{ backgroundColor: `red` }}
+                  className={styles.card__color}
+                  onClick={(el) => {
+                    setActive(el.target);
+                  }}
+                ></div>
+                <input
+                  className={styles.hidden__checkbox}
+                  type="checkbox"
+                  id="color-2"
+                  name="color"
+                  value="red"
+                />
               </div>
             </label>
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div style={{ backgroundColor: `green` }} className={styles.card__color}></div>
-                <input type="checkbox" id="color-3" name="color" value="green" />
+                <div
+                  style={{ backgroundColor: `green` }}
+                  className={styles.card__color}
+                  onClick={(el) => {
+                    setActive(el.target);
+                  }}
+                ></div>
+                <input
+                  className={styles.hidden__checkbox}
+                  type="checkbox"
+                  id="color-3"
+                  name="color"
+                  value="green"
+                />
               </div>
             </label>
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div style={{ backgroundColor: `black` }} className={styles.card__color}></div>
-                <input type="checkbox" id="color-4" name="color" value="black" />
+                <div
+                  style={{ backgroundColor: `black` }}
+                  className={styles.card__color}
+                  onClick={(el) => {
+                    setActive(el.target);
+                  }}
+                ></div>
+                <input
+                  className={styles.hidden__checkbox}
+                  type="checkbox"
+                  id="color-4"
+                  name="color"
+                  value="black"
+                />
               </div>
             </label>
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div style={{ backgroundColor: `white` }} className={styles.card__color}></div>
-                <input type="checkbox" id="color-5" name="color" value="white" />
+                <div
+                  style={{ backgroundColor: `white` }}
+                  className={styles.card__color}
+                  onClick={(el) => {
+                    setActive(el.target);
+                  }}
+                ></div>
+                <input
+                  className={styles.hidden__checkbox}
+                  type="checkbox"
+                  id="color-5"
+                  name="color"
+                  value="white"
+                />
               </div>
             </label>
           </div>

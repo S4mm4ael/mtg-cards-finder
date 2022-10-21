@@ -42,7 +42,13 @@
   width: 15px;
   border-radius: 7.5px;
   border: 1px black solid ;
+  transition: .3s;
 }
+.card__color:hover{
+  transform: scale(1.3);
+}
+
+
 .card__checkbox{
   display: flex;
   width: 10px;
@@ -76,4 +82,7 @@ label{
   justify-content: flex-end;
   gap: 20px;
   width: 380px;
+}
+.hidden__checkbox{
+  display: hidden;
 }
