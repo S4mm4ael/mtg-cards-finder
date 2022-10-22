@@ -15,7 +15,7 @@ class NotFound extends React.Component {
         />
         <h3>ERROR 404</h3>
 
-        <Link style={{ color: 'red' }} className="active-page" to="/main">
+        <Link style={{ color: 'red' }} className="active-page" to="/">
           Go to Main
         </Link>
       </div>

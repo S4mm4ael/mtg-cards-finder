@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
+import { Card } from 'components/Card/Card';
 
 function AddCardForm(): JSX.Element {
-  function setActive(el: EventTarget) {
-    console.log(el);
-  }
-
   return (
     <section className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
@@ -26,8 +23,8 @@ function AddCardForm(): JSX.Element {
                 <div
                   style={{ backgroundColor: `blue` }}
                   className={styles.card__color}
-                  onClick={(el) => {
-                    setActive(el.target);
+                  onClick={() => {
+                    console.log('+');
                   }}
                 ></div>
                 <input
@@ -41,13 +38,7 @@ function AddCardForm(): JSX.Element {
             </div>
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `red` }}
-                  className={styles.card__color}
-                  onClick={(el) => {
-                    setActive(el.target);
-                  }}
-                ></div>
+                <div style={{ backgroundColor: `red` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -60,13 +51,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `green` }}
-                  className={styles.card__color}
-                  onClick={(el) => {
-                    setActive(el.target);
-                  }}
-                ></div>
+                <div style={{ backgroundColor: `green` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -79,13 +64,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `black` }}
-                  className={styles.card__color}
-                  onClick={(el) => {
-                    setActive(el.target);
-                  }}
-                ></div>
+                <div style={{ backgroundColor: `black` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -98,13 +77,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `white` }}
-                  className={styles.card__color}
-                  onClick={(el) => {
-                    setActive(el.target);
-                  }}
-                ></div>
+                <div style={{ backgroundColor: `white` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -146,7 +119,6 @@ function AddCardForm(): JSX.Element {
         </label>
         <label className={styles.add__checkbox}>
           Availability:
-          {/* <!-- Toggle Button Style 8 --> */}
           <label className="toggler-wrapper style-9">
             <input type="checkbox" />
             <div className="toggler-slider">
@@ -162,6 +134,9 @@ function AddCardForm(): JSX.Element {
           </span>
         </label>
       </form>
+      <div className={`${styles.add__table} ${styles.flex__center}`}>
+        <Card id={1} />
+      </div>
     </section>
   );
 }

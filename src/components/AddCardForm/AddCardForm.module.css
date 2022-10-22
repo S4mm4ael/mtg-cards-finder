@@ -86,3 +86,14 @@ label{
 .hidden__checkbox{
   display: hidden;
 }
+.addcard__wrapper{
+  width: 100vh;
+  background-color: #b3b3b3;
+}
+.flex__center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+}
