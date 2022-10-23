@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { cardArray } from 'components/Card/cardData';
 
 function AddCardForm(): JSX.Element {
-  const [isActive, setActive] = useState(false);
-
-  const toggleClass = () => {
-    setActive(!isActive);
-  };
   return (
+    
     <section className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
       <form className={styles.add__table}>
@@ -26,11 +22,7 @@ function AddCardForm(): JSX.Element {
           <div className={styles.checkbox__wrapper}>
             <div className={styles.card__checkbox}>
               <label className={styles.color__label}>
-                <div
-                  style={{ backgroundColor: `blue` }}
-                  className={`${styles.card__color} ${isActive ? styles.active : null}`}
-                  onClick={toggleClass}
-                ></div>
+                <div style={{ backgroundColor: `blue` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -42,11 +34,7 @@ function AddCardForm(): JSX.Element {
             </div>
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `red` }}
-                  className={`${styles.card__color} ${isActive ? styles.active : null}`}
-                  onClick={toggleClass}
-                ></div>
+                <div style={{ backgroundColor: `red` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -59,11 +47,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `green` }}
-                  className={`${styles.card__color} ${isActive ? styles.active : null}`}
-                  onClick={toggleClass}
-                ></div>
+                <div style={{ backgroundColor: `green` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -76,11 +60,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `black` }}
-                  className={`${styles.card__color} ${isActive ? styles.active : null}`}
-                  onClick={toggleClass}
-                ></div>
+                <div style={{ backgroundColor: `black` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -93,11 +73,7 @@ function AddCardForm(): JSX.Element {
 
             <label className={styles.color__label}>
               <div className={styles.card__checkbox}>
-                <div
-                  style={{ backgroundColor: `white` }}
-                  className={`${styles.card__color} ${isActive ? styles.active : null}`}
-                  onClick={toggleClass}
-                ></div>
+                <div style={{ backgroundColor: `white` }} className={styles.card__color}></div>
                 <input
                   className={styles.hidden__checkbox}
                   type="checkbox"
@@ -153,7 +129,7 @@ function AddCardForm(): JSX.Element {
             Enter image url!
           </span>
         </label>
-        <button className={styles.submit__button}>Submit</button>
+        <button className={styles.submit__button}> Submit </button>
       </form>
       <div className={`${styles.add__table} ${styles.flex__center}`}>
         <Card {...cardArray[2]} />
