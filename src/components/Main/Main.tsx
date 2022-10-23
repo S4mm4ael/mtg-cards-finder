@@ -9,8 +9,8 @@ function Main(): JSX.Element {
     <main>
       <Search />
       <section className={styles.card__section}>
-        {cardArray.map((item, curId) => (
-          <Card key={item.name} id={curId} />
+        {cardArray.map((item) => (
+          <Card key={item.name} {...item} />
         ))}
       </section>
     </main>

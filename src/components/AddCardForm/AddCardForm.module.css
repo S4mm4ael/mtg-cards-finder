@@ -1,3 +1,6 @@
+.active{
+  transform: scale(1.5);
+}
 .add__section{
   display: flex;
   align-items: center;
@@ -96,4 +99,9 @@ label{
   flex-direction: column;
   justify-content: center;
   width: 500px;
+}
+.submit__button{
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: 1.2rem;
 }
