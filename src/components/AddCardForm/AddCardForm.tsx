@@ -19,7 +19,7 @@ function AddCardForm(): JSX.Element {
 
   const [nameError, setNameError] = useState('Name cannot be empty!');
   const [colorError, setColorError] = useState('Color set to none');
-  const [typeError, setTypeError] = useState('Type cannot be empty!');
+  const [typeError, setTypeError] = useState('Please select type');
   const [dateError, setDateError] = useState('Date set to current');
   const [urlError, setUrlError] = useState('Please check card image url!');
 
@@ -43,7 +43,16 @@ function AddCardForm(): JSX.Element {
       setUrlError('');
     }
   };
+  const typeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setType(e.target.value);
 
+    console.log(type);
+    if (e.target.value == 'Choose card type') {
+      setTypeError('Please select type');
+    } else {
+      setTypeError('');
+    }
+  };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
       case 'name':
@@ -77,7 +86,6 @@ function AddCardForm(): JSX.Element {
               name="name"
               type="text"
               className={styles.textbox}
-              defaultValue={''}
               value={name}
             />
             {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
@@ -162,7 +170,13 @@ function AddCardForm(): JSX.Element {
         <label className={styles.add__text}>
           Card type:
           <div className={styles.input__wrapper}>
-            <select onBlur={(e) => blurHandler(e)} name="type" id="card-type">
+            <select
+              onChange={(e) => typeHandler(e)}
+              onBlur={(e) => blurHandler(e)}
+              name="type"
+              id="card-type"
+              value={type}
+            >
               <option className="add__text">Choose card type</option>
               <option className="add__text">Creature</option>
               <option className="add__text">Planeswalker</option>
