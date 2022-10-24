@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
-import { cardArray } from './cardData';
 
 interface inputProps {
   id: number;

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .toggler-wrapper {
+  
   display: block;
   width: 45px;
   height: 25px;
@@ -28,6 +29,7 @@
 }
 
 .toggler-wrapper .toggler-knob {
+
   position: absolute;
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
