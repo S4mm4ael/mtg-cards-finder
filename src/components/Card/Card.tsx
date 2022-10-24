@@ -1,25 +1,9 @@
 import React from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
+import { Card } from './ICard';
 
-interface inputProps {
-  id: number;
-  name: string;
-  types: string[];
-  incollection: boolean;
-  colors: string[];
-  date: string;
-  imageUrl: string;
-}
-export function Card({
-  id,
-  name,
-  types,
-  incollection,
-  colors,
-  date,
-  imageUrl,
-}: inputProps): JSX.Element {
+export function Card({ id, name, types, incollection, colors, date, imageUrl }: Card): JSX.Element {
   return (
     <div id={`card-${id + 1}`} className={styles.card}>
       <h5 className={styles.card__title}>{name}</h5>
