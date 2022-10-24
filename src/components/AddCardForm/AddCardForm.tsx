@@ -33,6 +33,16 @@ function AddCardForm(): JSX.Element {
       setNameError('');
     }
   };
+  const urlHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setUrl(e.target.value);
+    const re =
+      /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setUrlError('Wrong URL format');
+    } else {
+      setUrlError('');
+    }
+  };
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
@@ -192,6 +202,7 @@ function AddCardForm(): JSX.Element {
           Url to card image:
           <div className={styles.input__wrapper}>
             <input
+              onChange={(e) => urlHandler(e)}
               onBlur={(e) => blurHandler(e)}
               type="text"
               name="url"
