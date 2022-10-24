@@ -26,17 +26,45 @@ function AddCardForm(): JSX.Element {
   const [availabilityError, setAvailabilityError] = useState('Please check card availability!');
   const [urlError, setUrlError] = useState('Please check card image url!');
 
+  const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+    console.log(e.target.name);
+
+    switch (e.target.name) {
+      case 'name':
+        setNameDirty(true);
+        break;
+      case 'color':
+        setColorDirty(true);
+        break;
+      case 'type':
+        setTypeDirty(true);
+        break;
+      case 'date':
+        setDateDirty(true);
+        break;
+      case 'availability':
+        setAvailabilityDirty(true);
+        break;
+      case 'url':
+        setUrlDirty(true);
+        break;
+    }
+  };
+
   return (
     <section className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
       <form className={styles.add__table}>
         <label className={styles.add__text}>
           Card name:
-          <input name="name" type="text" className={styles.textbox} defaultValue={''} />
+          <input
+            onBlur={(e) => blurHandler(e)}
+            name="name"
+            type="text"
+            className={styles.textbox}
+            defaultValue={''}
+          />
           {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
-          {/* <span className={styles.name} style={{ display: 'none' }}>
-            Incorrect input!
-          </span> */}
         </label>
         <div className={styles.add__checkbox}>
           Card color:
@@ -106,13 +134,10 @@ function AddCardForm(): JSX.Element {
             </label>
           </div>
           {colorDirty && colorError && <div style={{ color: 'red' }}>{colorError}</div>}
-          {/* <span className={styles.name} style={{ display: 'none' }}>
-            Color set to none!
-          </span> */}
         </div>
         <label className={styles.add__text}>
           Card type:
-          <select name="type" id="card-type">
+          <select onBlur={(e) => blurHandler(e)} name="type" id="card-type">
             <option className="add__text">Choose card type</option>
             <option className="add__text">Creature</option>
             <option className="add__text">Planeswalker</option>
@@ -127,21 +152,19 @@ function AddCardForm(): JSX.Element {
         <label className={styles.add__text}>
           Card adding date:
           <input
+            onBlur={(e) => blurHandler(e)}
             type="date"
             name="date"
             defaultValue={new Date().toISOString().slice(0, 10)}
             max="2025-12-31"
             className={styles.textbox}
           />
-          {/* <span className={styles.name} style={{ display: 'none' }}>
-            Enter the date!
-          </span> */}
           {dateDirty && dateError && <div style={{ color: 'red' }}>{dateError}</div>}
         </label>
         <div className={styles.add__checkbox}>
           Availability:
           <label className="toggler-wrapper style-9">
-            <input name="availability" type="checkbox" />
+            <input onBlur={(e) => blurHandler(e)} name="availability" type="checkbox" />
             <div className="toggler-slider">
               <div className="toggler-knob"></div>
             </div>
@@ -152,11 +175,14 @@ function AddCardForm(): JSX.Element {
         </div>
         <label className={styles.add__text}>
           Url to card image:
-          <input type="text" className={styles.textbox} defaultValue={''} />
+          <input
+            onBlur={(e) => blurHandler(e)}
+            type="text"
+            name="url"
+            className={styles.textbox}
+            defaultValue={''}
+          />
           {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
-          {/* <span className={styles.name} style={{ display: 'none' }}>
-            Enter image url!
-          </span> */}
         </label>
         <button className={styles.submit__button}> Submit </button>
       </form>
