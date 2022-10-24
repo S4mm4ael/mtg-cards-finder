@@ -9,21 +9,18 @@ function AddCardForm(): JSX.Element {
   const [color, setColor] = useState('');
   const [type, setType] = useState('');
   const [date, setDate] = useState('');
-  const [availability, setAvailability] = useState('');
   const [url, setUrl] = useState('');
 
   const [nameDirty, setNameDirty] = useState(false);
   const [colorDirty, setColorDirty] = useState(false);
   const [typeDirty, setTypeDirty] = useState(false);
   const [dateDirty, setDateDirty] = useState(false);
-  const [availabilityDirty, setAvailabilityDirty] = useState(false);
   const [urlDirty, setUrlDirty] = useState(false);
 
   const [nameError, setNameError] = useState('Name cannot be empty!');
   const [colorError, setColorError] = useState('Color set to none');
   const [typeError, setTypeError] = useState('Type cannot be empty!');
   const [dateError, setDateError] = useState('Date set to current');
-  const [availabilityError, setAvailabilityError] = useState('Please check card availability!');
   const [urlError, setUrlError] = useState('Please check card image url!');
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -42,9 +39,6 @@ function AddCardForm(): JSX.Element {
       case 'date':
         setDateDirty(true);
         break;
-      case 'availability':
-        setAvailabilityDirty(true);
-        break;
       case 'url':
         setUrlDirty(true);
         break;
@@ -57,14 +51,16 @@ function AddCardForm(): JSX.Element {
       <form className={styles.add__table}>
         <label className={styles.add__text}>
           Card name:
-          <input
-            onBlur={(e) => blurHandler(e)}
-            name="name"
-            type="text"
-            className={styles.textbox}
-            defaultValue={''}
-          />
-          {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
+          <div className={styles.input__wrapper}>
+            <input
+              onBlur={(e) => blurHandler(e)}
+              name="name"
+              type="text"
+              className={styles.textbox}
+              defaultValue={''}
+            />
+            {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
+          </div>
         </label>
         <div className={styles.add__checkbox}>
           Card color:
@@ -137,29 +133,33 @@ function AddCardForm(): JSX.Element {
         </div>
         <label className={styles.add__text}>
           Card type:
-          <select onBlur={(e) => blurHandler(e)} name="type" id="card-type">
-            <option className="add__text">Choose card type</option>
-            <option className="add__text">Creature</option>
-            <option className="add__text">Planeswalker</option>
-            <option className="add__text">Artefact</option>
-            <option className="add__text">Instant</option>
-            <option className="add__text">Sorcery</option>
-            <option className="add__text">Enchantment</option>
-            <option className="add__text">Land</option>
-          </select>
-          {typeDirty && typeError && <div style={{ color: 'red' }}>{typeError}</div>}
+          <div className={styles.input__wrapper}>
+            <select onBlur={(e) => blurHandler(e)} name="type" id="card-type">
+              <option className="add__text">Choose card type</option>
+              <option className="add__text">Creature</option>
+              <option className="add__text">Planeswalker</option>
+              <option className="add__text">Artefact</option>
+              <option className="add__text">Instant</option>
+              <option className="add__text">Sorcery</option>
+              <option className="add__text">Enchantment</option>
+              <option className="add__text">Land</option>
+            </select>
+            {typeDirty && typeError && <div style={{ color: 'red' }}>{typeError}</div>}
+          </div>
         </label>
         <label className={styles.add__text}>
           Card adding date:
-          <input
-            onBlur={(e) => blurHandler(e)}
-            type="date"
-            name="date"
-            defaultValue={new Date().toISOString().slice(0, 10)}
-            max="2025-12-31"
-            className={styles.textbox}
-          />
-          {dateDirty && dateError && <div style={{ color: 'red' }}>{dateError}</div>}
+          <div className={styles.input__wrapper}>
+            <input
+              onBlur={(e) => blurHandler(e)}
+              type="date"
+              name="date"
+              defaultValue={new Date().toISOString().slice(0, 10)}
+              max="2025-12-31"
+              className={styles.textbox}
+            />
+            {dateDirty && dateError && <div style={{ color: 'red' }}>{dateError}</div>}
+          </div>
         </label>
         <div className={styles.add__checkbox}>
           Availability:
@@ -169,20 +169,19 @@ function AddCardForm(): JSX.Element {
               <div className="toggler-knob"></div>
             </div>
           </label>
-          {availabilityDirty && availabilityError && (
-            <div style={{ color: 'red' }}>{availabilityError}</div>
-          )}
         </div>
         <label className={styles.add__text}>
           Url to card image:
-          <input
-            onBlur={(e) => blurHandler(e)}
-            type="text"
-            name="url"
-            className={styles.textbox}
-            defaultValue={''}
-          />
-          {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
+          <div className={styles.input__wrapper}>
+            <input
+              onBlur={(e) => blurHandler(e)}
+              type="text"
+              name="url"
+              className={styles.textbox}
+              defaultValue={''}
+            />
+            {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}{' '}
+          </div>
         </label>
         <button className={styles.submit__button}> Submit </button>
       </form>
