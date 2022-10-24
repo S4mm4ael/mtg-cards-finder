@@ -23,6 +23,17 @@ function AddCardForm(): JSX.Element {
   const [dateError, setDateError] = useState('Date set to current');
   const [urlError, setUrlError] = useState('Please check card image url!');
 
+  const nameHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setName(e.target.value);
+    const re =
+      /^['' a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setNameError('Wrong name format');
+    } else {
+      setNameError('');
+    }
+  };
+
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
       case 'name':
@@ -51,11 +62,13 @@ function AddCardForm(): JSX.Element {
           Card name:
           <div className={styles.input__wrapper}>
             <input
+              onChange={(e) => nameHandler(e)}
               onBlur={(e) => blurHandler(e)}
               name="name"
               type="text"
               className={styles.textbox}
               defaultValue={''}
+              value={name}
             />
             {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
           </div>
