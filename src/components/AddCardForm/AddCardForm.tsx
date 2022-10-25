@@ -226,11 +226,16 @@ function AddCardForm(): JSX.Element {
             {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
           </div>
         </label>
-        <button type="submit" disabled={!formValid} className={styles.submit__button}>
+        <button
+          type="submit"
+          onSubmit={() => {}}
+          disabled={!formValid}
+          className={styles.submit__button}
+        >
           Submit
         </button>
       </form>
-      <div className={`${styles.add__table} ${styles.flex__center}`}>
+      <div id="card-wrapper" className={`${styles.add__table} ${styles.flex__center}`}>
         <Card
           id={id}
           name={name}
