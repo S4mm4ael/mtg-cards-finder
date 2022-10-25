@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
@@ -7,25 +7,34 @@ import { types } from './types';
 
 function AddCardForm(): JSX.Element {
   const id = 0;
+  const defaultDate = new Date().toISOString().slice(0, 10);
   let incollection = false;
 
   const [name, setName] = useState('');
   const [colorSet, setColor] = useState(new Set<string>());
   const [type, setType] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(defaultDate);
   const [url, setUrl] = useState('');
 
   const [nameDirty, setNameDirty] = useState(false);
   const [colorDirty, setColorDirty] = useState(false);
   const [typeDirty, setTypeDirty] = useState(false);
-  const [dateDirty, setDateDirty] = useState(false);
   const [urlDirty, setUrlDirty] = useState(false);
 
   const [nameError, setNameError] = useState('Name cannot be empty!');
   const [colorError, setColorError] = useState('Color set to none');
   const [typeError, setTypeError] = useState('Please select type');
-  const [dateError, setDateError] = useState('Date set to current');
   const [urlError, setUrlError] = useState('Please check card image url!');
+
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    if (nameError || colorError || typeError || urlError) {
+      setFormValid(false);
+    } else {
+      setFormValid(true);
+    }
+  }, [nameError, colorError, typeError, urlError]);
 
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setName(e.target.value);
@@ -80,12 +89,6 @@ function AddCardForm(): JSX.Element {
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
-
-    if (e.target.value) {
-      setDateError('Date set to current');
-    } else {
-      setDateError('');
-    }
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
@@ -97,9 +100,6 @@ function AddCardForm(): JSX.Element {
         break;
       case 'type':
         setTypeDirty(true);
-        break;
-      case 'date':
-        setDateDirty(true);
         break;
       case 'url':
         setUrlDirty(true);
@@ -190,11 +190,10 @@ function AddCardForm(): JSX.Element {
               onBlur={(e) => blurHandler(e)}
               type="date"
               name="date"
-              defaultValue={new Date().toISOString().slice(0, 10)}
+              value={date}
               max="2025-12-31"
               className={styles.textbox}
             />
-            {dateDirty && dateError && <div style={{ color: 'red' }}>{dateError}</div>}
           </div>
         </label>
         <div className={styles.add__checkbox}>
@@ -224,16 +223,18 @@ function AddCardForm(): JSX.Element {
               className={styles.textbox}
               defaultValue={''}
             />
-            {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}{' '}
+            {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
           </div>
         </label>
-        <button className={styles.submit__button}> Submit </button>
+        <button type="submit" disabled={!formValid} className={styles.submit__button}>
+          Submit
+        </button>
       </form>
       <div className={`${styles.add__table} ${styles.flex__center}`}>
         <Card
           id={id}
           name={name}
-          types={Array.from(type)}
+          types={[type]}
           colors={Array.from(colorSet)}
           incollection={incollection}
           date={date}
