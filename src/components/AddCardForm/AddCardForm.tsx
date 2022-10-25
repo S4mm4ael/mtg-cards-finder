@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
-import { cardArray } from 'components/Card/cardData';
 import { colors } from './colors';
 import { types } from './types';
 
 function AddCardForm(): JSX.Element {
+  const id = 0;
+  let incollection = false;
+
   const [name, setName] = useState('');
-  const [colorSet, setColor] = useState(new Set());
+  const [colorSet, setColor] = useState(new Set<string>());
   const [type, setType] = useState('');
   const [date, setDate] = useState('');
   const [url, setUrl] = useState('');
@@ -74,6 +76,15 @@ function AddCardForm(): JSX.Element {
     } else {
       console.log('');
       setColorError('');
+    }
+  };
+  const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
+
+    if (e.target.value) {
+      setDateError('Date set to current');
+    } else {
+      setDateError('');
     }
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -175,6 +186,7 @@ function AddCardForm(): JSX.Element {
           Card adding date:
           <div className={styles.input__wrapper}>
             <input
+              onChange={(e) => dateHandler(e)}
               onBlur={(e) => blurHandler(e)}
               type="date"
               name="date"
@@ -188,7 +200,14 @@ function AddCardForm(): JSX.Element {
         <div className={styles.add__checkbox}>
           Availability:
           <label className="toggler-wrapper style-9">
-            <input onBlur={(e) => blurHandler(e)} name="availability" type="checkbox" />
+            <input
+              onBlur={(e) => blurHandler(e)}
+              onChange={() => {
+                incollection == false ? (incollection = true) : (incollection = false);
+              }}
+              name="availability"
+              type="checkbox"
+            />
             <div className="toggler-slider">
               <div className="toggler-knob"></div>
             </div>
@@ -211,7 +230,15 @@ function AddCardForm(): JSX.Element {
         <button className={styles.submit__button}> Submit </button>
       </form>
       <div className={`${styles.add__table} ${styles.flex__center}`}>
-        <Card {...cardArray[2]} />
+        <Card
+          id={id}
+          name={name}
+          types={Array.from(type)}
+          colors={Array.from(colorSet)}
+          incollection={incollection}
+          date={date}
+          imageUrl={url}
+        />
       </div>
     </section>
   );
