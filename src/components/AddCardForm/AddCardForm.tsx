@@ -3,6 +3,7 @@ import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { cardArray } from 'components/Card/cardData';
+import { colors } from './colors';
 
 function AddCardForm(): JSX.Element {
   const [name, setName] = useState('');
@@ -60,11 +61,17 @@ function AddCardForm(): JSX.Element {
         break;
       case false:
         setColor((prev) => new Set([...prev].filter((x) => x !== e.target.value)));
+
         break;
     }
-    if (colorSet.size == 1) {
+  };
+  const colorStatusCheck = (): void => {
+    if (colorSet.size == 0) {
+      console.log('Color set to none');
+
       setColorError('Color set to none');
     } else {
+      console.log('');
       setColorError('');
     }
   };
@@ -108,85 +115,38 @@ function AddCardForm(): JSX.Element {
         </label>
         <div className={styles.add__checkbox}>
           Card color:
-          <div className={styles.input__wrapper}>
+          <div className={`${styles.input__wrapper}`}>
             <div className={styles.checkbox__wrapper}>
-              <div className={styles.card__checkbox}>
-                <label className={styles.color__label}>
-                  <div style={{ backgroundColor: `blue` }} className={styles.card__color}></div>
-                  <input
-                    onChange={(e) => colorHandler(e)}
-                    onBlur={(e) => blurHandler(e)}
-                    className={styles.hidden__checkbox}
-                    type="checkbox"
-                    id="color-1"
-                    name="color"
-                    value="blue"
-                  />
-                </label>
-              </div>
-              <label className={styles.color__label}>
-                <div className={styles.card__checkbox}>
-                  <div style={{ backgroundColor: `red` }} className={styles.card__color}></div>
-                  <input
-                    onChange={(e) => colorHandler(e)}
-                    onBlur={(e) => blurHandler(e)}
-                    className={styles.hidden__checkbox}
-                    type="checkbox"
-                    id="color-2"
-                    name="color"
-                    value="red"
-                  />
-                </div>
-              </label>
-
-              <label className={styles.color__label}>
-                <div className={styles.card__checkbox}>
-                  <div style={{ backgroundColor: `green` }} className={styles.card__color}></div>
-                  <input
-                    onChange={(e) => colorHandler(e)}
-                    onBlur={(e) => blurHandler(e)}
-                    className={styles.hidden__checkbox}
-                    type="checkbox"
-                    id="color-3"
-                    name="color"
-                    value="green"
-                  />
-                </div>
-              </label>
-
-              <label className={styles.color__label}>
-                <div className={styles.card__checkbox}>
-                  <div style={{ backgroundColor: `black` }} className={styles.card__color}></div>
-                  <input
-                    onChange={(e) => colorHandler(e)}
-                    onBlur={(e) => blurHandler(e)}
-                    className={styles.hidden__checkbox}
-                    type="checkbox"
-                    id="color-4"
-                    name="color"
-                    value="black"
-                  />
-                </div>
-              </label>
-
-              <label className={styles.color__label}>
-                <div className={styles.card__checkbox}>
-                  <div style={{ backgroundColor: `white` }} className={styles.card__color}></div>
-                  <input
-                    onChange={(e) => colorHandler(e)}
-                    onBlur={(e) => blurHandler(e)}
-                    className={styles.hidden__checkbox}
-                    type="checkbox"
-                    id="color-5"
-                    name="color"
-                    value="white"
-                  />
-                </div>
-              </label>
+              {colors.map(({ color }, index) => {
+                return (
+                  <li key={index} className={styles.card__checkbox}>
+                    <label className={styles.color__label}>
+                      <div style={{ backgroundColor: color }} className={styles.card__color}></div>
+                      <input
+                        onChange={(e) => {
+                          colorHandler(e);
+                        }}
+                        onBlur={(e) => {
+                          blurHandler(e);
+                          colorStatusCheck();
+                        }}
+                        className={styles.hidden__checkbox}
+                        type="checkbox"
+                        id={`color-${index}`}
+                        name="color"
+                        value={color}
+                      />
+                    </label>
+                  </li>
+                );
+              })}
             </div>
-            {colorDirty && colorError && <div style={{ color: 'red' }}>{colorError}</div>}
+            {colorDirty && colorError && (
+              <div style={{ color: 'red', fontSize: '0.7rem' }}>{colorError}</div>
+            )}
           </div>
         </div>
+
         <label className={styles.add__text}>
           Card type:
           <div className={styles.input__wrapper}>
