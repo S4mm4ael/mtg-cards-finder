@@ -6,7 +6,7 @@ import { cardArray } from 'components/Card/cardData';
 
 function AddCardForm(): JSX.Element {
   const [name, setName] = useState('');
-  const [color, setColor] = useState('');
+  const [colorSet, setColor] = useState(new Set());
   const [type, setType] = useState('');
   const [date, setDate] = useState('');
   const [url, setUrl] = useState('');
@@ -50,6 +50,22 @@ function AddCardForm(): JSX.Element {
       setTypeError('Please select type');
     } else {
       setTypeError('');
+    }
+  };
+
+  const colorHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.checked) {
+      case true:
+        setColor((prev) => new Set(prev.add(e.target.value)));
+        break;
+      case false:
+        setColor((prev) => new Set([...prev].filter((x) => x !== e.target.value)));
+        break;
+    }
+    if (colorSet.size == 1) {
+      setColorError('Color set to none');
+    } else {
+      setColorError('');
     }
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -98,6 +114,7 @@ function AddCardForm(): JSX.Element {
                 <label className={styles.color__label}>
                   <div style={{ backgroundColor: `blue` }} className={styles.card__color}></div>
                   <input
+                    onChange={(e) => colorHandler(e)}
                     onBlur={(e) => blurHandler(e)}
                     className={styles.hidden__checkbox}
                     type="checkbox"
@@ -111,6 +128,7 @@ function AddCardForm(): JSX.Element {
                 <div className={styles.card__checkbox}>
                   <div style={{ backgroundColor: `red` }} className={styles.card__color}></div>
                   <input
+                    onChange={(e) => colorHandler(e)}
                     onBlur={(e) => blurHandler(e)}
                     className={styles.hidden__checkbox}
                     type="checkbox"
@@ -125,6 +143,7 @@ function AddCardForm(): JSX.Element {
                 <div className={styles.card__checkbox}>
                   <div style={{ backgroundColor: `green` }} className={styles.card__color}></div>
                   <input
+                    onChange={(e) => colorHandler(e)}
                     onBlur={(e) => blurHandler(e)}
                     className={styles.hidden__checkbox}
                     type="checkbox"
@@ -139,6 +158,7 @@ function AddCardForm(): JSX.Element {
                 <div className={styles.card__checkbox}>
                   <div style={{ backgroundColor: `black` }} className={styles.card__color}></div>
                   <input
+                    onChange={(e) => colorHandler(e)}
                     onBlur={(e) => blurHandler(e)}
                     className={styles.hidden__checkbox}
                     type="checkbox"
@@ -153,6 +173,7 @@ function AddCardForm(): JSX.Element {
                 <div className={styles.card__checkbox}>
                   <div style={{ backgroundColor: `white` }} className={styles.card__color}></div>
                   <input
+                    onChange={(e) => colorHandler(e)}
                     onBlur={(e) => blurHandler(e)}
                     className={styles.hidden__checkbox}
                     type="checkbox"
