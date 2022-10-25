@@ -46,7 +46,6 @@ function AddCardForm(): JSX.Element {
   const typeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
 
-    console.log(type);
     if (e.target.value == 'Choose card type') {
       setTypeError('Please select type');
     } else {
@@ -171,7 +170,9 @@ function AddCardForm(): JSX.Element {
           Card type:
           <div className={styles.input__wrapper}>
             <select
-              onChange={(e) => typeHandler(e)}
+              onChange={(e) => {
+                typeHandler(e);
+              }}
               onBlur={(e) => blurHandler(e)}
               name="type"
               id="card-type"
