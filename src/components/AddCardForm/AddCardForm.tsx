@@ -4,6 +4,7 @@ import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { cardArray } from 'components/Card/cardData';
 import { colors } from './colors';
+import { types } from './types';
 
 function AddCardForm(): JSX.Element {
   const [name, setName] = useState('');
@@ -159,14 +160,13 @@ function AddCardForm(): JSX.Element {
               id="card-type"
               value={type}
             >
-              <option className="add__text">Choose card type</option>
-              <option className="add__text">Creature</option>
-              <option className="add__text">Planeswalker</option>
-              <option className="add__text">Artefact</option>
-              <option className="add__text">Instant</option>
-              <option className="add__text">Sorcery</option>
-              <option className="add__text">Enchantment</option>
-              <option className="add__text">Land</option>
+              {types.map(({ type }, index) => {
+                return (
+                  <option key={index} className="add__text">
+                    {type}
+                  </option>
+                );
+              })}
             </select>
             {typeDirty && typeError && <div style={{ color: 'red' }}>{typeError}</div>}
           </div>
