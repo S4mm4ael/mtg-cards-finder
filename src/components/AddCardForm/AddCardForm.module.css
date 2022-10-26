@@ -1,6 +1,7 @@
 .active{
   transform: scale(1.5);
 }
+
 .add__section{
   display: flex;
   align-items: center;
@@ -113,4 +114,7 @@ label{
   flex-direction: column;
   align-items: flex-start;
   height: 45px;
+}
+.hidden{
+  display: none;
 }

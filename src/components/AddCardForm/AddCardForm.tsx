@@ -4,17 +4,19 @@ import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { colors } from './colors';
 import { types } from './types';
+import { Collection } from 'typescript';
 
 function AddCardForm(): JSX.Element {
   const id = 0;
   const defaultDate = new Date().toISOString().slice(0, 10);
-  let incollection = false;
+  const wrapper = document.getElementById('card-wrapper');
 
   const [name, setName] = useState('');
   const [colorSet, setColor] = useState(new Set<string>());
   const [type, setType] = useState('');
   const [date, setDate] = useState(defaultDate);
   const [url, setUrl] = useState('');
+  const [incollection, setIncollection] = useState(false);
 
   const [nameDirty, setNameDirty] = useState(false);
   const [colorDirty, setColorDirty] = useState(false);
@@ -27,6 +29,7 @@ function AddCardForm(): JSX.Element {
   const [urlError, setUrlError] = useState('Please check card image url!');
 
   const [formValid, setFormValid] = useState(false);
+  const [isRendered, setRenderValid] = useState(false);
 
   useEffect(() => {
     if (nameError || colorError || typeError || urlError) {
@@ -79,16 +82,16 @@ function AddCardForm(): JSX.Element {
   };
   const colorStatusCheck = (): void => {
     if (colorSet.size == 0) {
-      console.log('Color set to none');
-
       setColorError('Color set to none');
     } else {
-      console.log('');
       setColorError('');
     }
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
+  };
+  const availabilityHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    incollection == false ? setIncollection(true) : setIncollection(false);
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
@@ -105,6 +108,32 @@ function AddCardForm(): JSX.Element {
         setUrlDirty(true);
         break;
     }
+  };
+  const clearColors = (): void => {
+    const colorsCheckboxes = document.getElementsByName('color') as NodeListOf<HTMLInputElement>;
+    for (let i = 0; i < colorsCheckboxes.length; i++) {
+      colorsCheckboxes[i].checked = false;
+    }
+    setColor(new Set<string>());
+  };
+  const submitHandler = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    wrapper?.classList.remove(`${styles.hidden}`);
+    setRenderValid(true);
+    setFormValid(false);
+  };
+  const renderHandler = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    setRenderValid(false);
+    setFormValid(true);
+
+    setName('');
+    setType('Choose card type');
+    setDate(defaultDate);
+    setIncollection(false);
+    setUrl('');
+
+    clearColors();
   };
 
   return (
@@ -201,11 +230,12 @@ function AddCardForm(): JSX.Element {
           <label className="toggler-wrapper style-9">
             <input
               onBlur={(e) => blurHandler(e)}
-              onChange={() => {
-                incollection == false ? (incollection = true) : (incollection = false);
+              onChange={(e) => {
+                availabilityHandler(e);
               }}
               name="availability"
               type="checkbox"
+              checked={incollection}
             />
             <div className="toggler-slider">
               <div className="toggler-knob"></div>
@@ -221,21 +251,35 @@ function AddCardForm(): JSX.Element {
               type="text"
               name="url"
               className={styles.textbox}
-              defaultValue={''}
+              value={url}
             />
             {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
           </div>
         </label>
         <button
           type="submit"
-          onSubmit={() => {}}
+          onClick={(e) => submitHandler(e)}
           disabled={!formValid}
-          className={styles.submit__button}
+          className={`${styles.submit__button} `}
         >
           Submit
         </button>
+        <button
+          type="submit"
+          onClick={(e) => {
+            submitHandler(e);
+            renderHandler(e);
+          }}
+          disabled={!isRendered}
+          className={`${styles.submit__button} ${isRendered ? '' : styles.hidden}`}
+        >
+          One more
+        </button>
       </form>
-      <div id="card-wrapper" className={`${styles.add__table} ${styles.flex__center}`}>
+      <div
+        id="card-wrapper"
+        className={`${styles.add__table} ${styles.flex__center} ${isRendered ? '' : styles.hidden}`}
+      >
         <Card
           id={id}
           name={name}
