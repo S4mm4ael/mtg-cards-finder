@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
+import { UploadImage } from './UploadImage';
 import { colors } from './colors';
 import { types } from './types';
-import { Collection } from 'typescript';
 
 function AddCardForm(): JSX.Element {
   const id = 0;
@@ -90,7 +90,7 @@ function AddCardForm(): JSX.Element {
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
-  const availabilityHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const availabilityHandler = () => {
     incollection == false ? setIncollection(true) : setIncollection(false);
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -230,8 +230,8 @@ function AddCardForm(): JSX.Element {
           <label className="toggler-wrapper style-9">
             <input
               onBlur={(e) => blurHandler(e)}
-              onChange={(e) => {
-                availabilityHandler(e);
+              onChange={() => {
+                availabilityHandler();
               }}
               name="availability"
               type="checkbox"
@@ -264,6 +264,7 @@ function AddCardForm(): JSX.Element {
         >
           Submit
         </button>
+        <UploadImage />
         <button
           type="submit"
           onClick={(e) => {
