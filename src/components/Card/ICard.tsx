@@ -6,4 +6,5 @@ export interface ICard {
   colors: string[];
   date: string;
   imageUrl: string;
+  image?: File | null;
 }

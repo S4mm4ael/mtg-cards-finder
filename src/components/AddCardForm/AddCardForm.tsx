@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './checkbox.css';
 import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
-import { UploadImage } from './UploadImage';
 import { colors } from './colors';
 import { types } from './types';
 
@@ -17,6 +16,7 @@ function AddCardForm(): JSX.Element {
   const [date, setDate] = useState(defaultDate);
   const [url, setUrl] = useState('');
   const [incollection, setIncollection] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const [nameDirty, setNameDirty] = useState(false);
   const [colorDirty, setColorDirty] = useState(false);
@@ -32,12 +32,12 @@ function AddCardForm(): JSX.Element {
   const [isRendered, setRenderValid] = useState(false);
 
   useEffect(() => {
-    if (nameError || colorError || typeError || urlError) {
+    if (nameError || colorError || typeError) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
-  }, [nameError, colorError, typeError, urlError]);
+  }, [nameError, colorError, typeError]);
 
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setName(e.target.value);
@@ -92,6 +92,11 @@ function AddCardForm(): JSX.Element {
   };
   const availabilityHandler = () => {
     incollection == false ? setIncollection(true) : setIncollection(false);
+  };
+  const UploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: Strict null checks
+    setSelectedImage(e.target.files[0]);
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
@@ -264,7 +269,15 @@ function AddCardForm(): JSX.Element {
         >
           Submit
         </button>
-        <UploadImage />
+        <div>
+          <input
+            type="file"
+            name="myImage"
+            onChange={(e) => {
+              UploadImage(e);
+            }}
+          />
+        </div>
         <button
           type="submit"
           onClick={(e) => {
@@ -289,6 +302,7 @@ function AddCardForm(): JSX.Element {
           incollection={incollection}
           date={date}
           imageUrl={url}
+          image={selectedImage}
         />
       </div>
     </section>
