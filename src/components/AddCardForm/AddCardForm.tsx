@@ -4,9 +4,10 @@ import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { colors } from './colors';
 import { types } from './types';
-
+import { ICard } from '../Card/ICard';
+const cardArray: ICard[] = [];
 function AddCardForm(): JSX.Element {
-  const id = 0;
+  let id = 0;
   const defaultDate = new Date().toISOString().slice(0, 10);
   const wrapper = document.getElementById('card-wrapper');
 
@@ -41,6 +42,7 @@ function AddCardForm(): JSX.Element {
 
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setName(e.target.value);
+    setFormValid(true);
     const re =
       /^['' a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
     if (!re.test(String(e.target.value).toLowerCase())) {
@@ -51,6 +53,7 @@ function AddCardForm(): JSX.Element {
   };
   const urlHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setUrl(e.target.value);
+    setFormValid(true);
     const re =
       /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
     if (!re.test(String(e.target.value).toLowerCase())) {
@@ -61,7 +64,7 @@ function AddCardForm(): JSX.Element {
   };
   const typeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
-
+    setFormValid(true);
     if (e.target.value == 'Choose card type') {
       setTypeError('Please select type');
     } else {
@@ -70,6 +73,7 @@ function AddCardForm(): JSX.Element {
   };
 
   const colorHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValid(true);
     switch (e.target.checked) {
       case true:
         setColor((prev) => new Set(prev.add(e.target.value)));
@@ -81,6 +85,7 @@ function AddCardForm(): JSX.Element {
     }
   };
   const colorStatusCheck = (): void => {
+    setFormValid(true);
     if (colorSet.size == 0) {
       setColorError('Color set to none');
     } else {
@@ -89,27 +94,34 @@ function AddCardForm(): JSX.Element {
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
+    setFormValid(true);
   };
   const availabilityHandler = () => {
+    setFormValid(true);
     incollection == false ? setIncollection(true) : setIncollection(false);
   };
   const UploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: Strict null checks
     setSelectedImage(e.target.files[0]);
+    setFormValid(true);
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
       case 'name':
+        setFormValid(true);
         setNameDirty(true);
         break;
       case 'color':
+        setFormValid(true);
         setColorDirty(true);
         break;
       case 'type':
+        setFormValid(true);
         setTypeDirty(true);
         break;
       case 'url':
+        setFormValid(true);
         setUrlDirty(true);
         break;
     }
@@ -126,10 +138,11 @@ function AddCardForm(): JSX.Element {
     wrapper?.classList.remove(`${styles.hidden}`);
     setRenderValid(true);
     setFormValid(false);
+    addCardToArray();
+    setRenderValid(true);
   };
   const renderHandler = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    setRenderValid(false);
     setFormValid(true);
 
     setName('');
@@ -140,7 +153,20 @@ function AddCardForm(): JSX.Element {
 
     clearColors();
   };
-
+  const addCardToArray = (): void => {
+    id = id + 1;
+    const card = {
+      id: id,
+      name: name,
+      types: [type],
+      incollection: incollection,
+      colors: Array.from(colorSet),
+      date: date,
+      imageUrl: url,
+      image: selectedImage,
+    };
+    cardArray.push(card);
+  };
   return (
     <section className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
@@ -261,27 +287,31 @@ function AddCardForm(): JSX.Element {
             {urlDirty && urlError && <div style={{ color: 'red' }}>{urlError}</div>}
           </div>
         </label>
+        <div className={styles.add__text}>
+          Or upload file from local
+          <div className={styles.input__wrapper}>
+            <input
+              type="file"
+              name="myImage"
+              onChange={(e) => {
+                UploadImage(e);
+              }}
+            />
+          </div>
+        </div>
         <button
           type="submit"
           onClick={(e) => submitHandler(e)}
           disabled={!formValid}
           className={`${styles.submit__button} `}
+          name="submit"
         >
           Submit
         </button>
-        <div>
-          <input
-            type="file"
-            name="myImage"
-            onChange={(e) => {
-              UploadImage(e);
-            }}
-          />
-        </div>
+
         <button
           type="submit"
           onClick={(e) => {
-            submitHandler(e);
             renderHandler(e);
           }}
           disabled={!isRendered}
@@ -294,16 +324,9 @@ function AddCardForm(): JSX.Element {
         id="card-wrapper"
         className={`${styles.add__table} ${styles.flex__center} ${isRendered ? '' : styles.hidden}`}
       >
-        <Card
-          id={id}
-          name={name}
-          types={[type]}
-          colors={Array.from(colorSet)}
-          incollection={incollection}
-          date={date}
-          imageUrl={url}
-          image={selectedImage}
-        />
+        {cardArray.map((item) => (
+          <Card key={item.name} {...item} />
+        ))}
       </div>
     </section>
   );

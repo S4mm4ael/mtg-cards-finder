@@ -19,7 +19,7 @@ export function Card({
       <img
         className={styles.card__img}
         width={200}
-        src={`${image ? image : imageUrl}`}
+        src={`${image ? URL.createObjectURL(image) : imageUrl}`}
         alt={name}
       />
       <span className={styles.card__header}>Colors:</span>
