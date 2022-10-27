@@ -25,7 +25,7 @@ function AddCardForm(): JSX.Element {
   const [urlDirty, setUrlDirty] = useState(false);
 
   const [nameError, setNameError] = useState('Name cannot be empty!');
-  const [colorError, setColorError] = useState('Color set to none');
+  const [colorError, setColorError] = useState('Choose color!');
   const [typeError, setTypeError] = useState('Please select type');
   const [urlError, setUrlError] = useState('Please check card image url!');
 
@@ -42,86 +42,88 @@ function AddCardForm(): JSX.Element {
 
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setName(e.target.value);
-    setFormValid(true);
+
     const re =
       /^['' a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setNameError('Wrong name format');
+      setNameError('Wrong name format!');
+      setFormValid(false);
     } else {
       setNameError('');
+      setFormValid(true);
     }
   };
   const urlHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setUrl(e.target.value);
-    setFormValid(true);
+
     const re =
       /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
     if (!re.test(String(e.target.value).toLowerCase())) {
       setUrlError('Wrong URL format');
+      setFormValid(false);
     } else {
       setUrlError('');
+      setFormValid(true);
     }
   };
   const typeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
-    setFormValid(true);
+
     if (e.target.value == 'Choose card type') {
       setTypeError('Please select type');
+      setFormValid(false);
     } else {
       setTypeError('');
+      setFormValid(true);
     }
   };
 
   const colorHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValid(true);
     switch (e.target.checked) {
       case true:
         setColor((prev) => new Set(prev.add(e.target.value)));
         break;
       case false:
         setColor((prev) => new Set([...prev].filter((x) => x !== e.target.value)));
-
         break;
     }
   };
   const colorStatusCheck = (): void => {
-    setFormValid(true);
     if (colorSet.size == 0) {
-      setColorError('Color set to none');
+      setColorError('Choose color!');
+      setFormValid(false);
     } else {
       setColorError('');
+      setFormValid(true);
     }
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
-    setFormValid(true);
   };
   const availabilityHandler = () => {
-    setFormValid(true);
     incollection == false ? setIncollection(true) : setIncollection(false);
   };
   const UploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: Strict null checks
     setSelectedImage(e.target.files[0]);
+
     setFormValid(true);
   };
   const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
     switch (e.target.name) {
       case 'name':
-        setFormValid(true);
+        nameHandler(e);
         setNameDirty(true);
         break;
       case 'color':
-        setFormValid(true);
         setColorDirty(true);
         break;
       case 'type':
-        setFormValid(true);
         setTypeDirty(true);
         break;
       case 'url':
-        setFormValid(true);
+        urlHandler(e);
         setUrlDirty(true);
         break;
     }
@@ -172,7 +174,7 @@ function AddCardForm(): JSX.Element {
       <h2 className={styles.add__header}>Create your card</h2>
       <form className={styles.add__table}>
         <label className={styles.add__text}>
-          Card name:
+          Card name*:
           <div className={styles.input__wrapper}>
             <input
               onChange={(e) => nameHandler(e)}
@@ -186,7 +188,7 @@ function AddCardForm(): JSX.Element {
           </div>
         </label>
         <div className={styles.add__checkbox}>
-          Card color:
+          Card color*:
           <div className={`${styles.input__wrapper}`}>
             <div className={styles.checkbox__wrapper}>
               {colors.map(({ color }, index) => {
@@ -220,7 +222,7 @@ function AddCardForm(): JSX.Element {
         </div>
 
         <label className={styles.add__text}>
-          Card type:
+          Card type*:
           <div className={styles.input__wrapper}>
             <select
               onChange={(e) => {
@@ -299,6 +301,7 @@ function AddCardForm(): JSX.Element {
             />
           </div>
         </div>
+        <span className={styles.required}>* - required fields</span>
         <button
           type="submit"
           onClick={(e) => submitHandler(e)}
