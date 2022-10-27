@@ -14,7 +14,11 @@ export function Card({
   image,
 }: ICard): JSX.Element {
   return (
-    <div id={`card-${id + 1}`} className={styles.card}>
+    <div
+      id={`card-${id + 1}`}
+      style={{ background: `linear-gradient(180deg, #ffffff 0%, ${colors} 120%)` }}
+      className={`${styles.card}`}
+    >
       <h5 className={styles.card__title}>{name}</h5>
       <img
         className={styles.card__img}

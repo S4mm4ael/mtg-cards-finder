@@ -141,7 +141,6 @@ function AddCardForm(): JSX.Element {
     setRenderValid(true);
     setFormValid(false);
     addCardToArray();
-    setRenderValid(true);
   };
   const renderHandler = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
