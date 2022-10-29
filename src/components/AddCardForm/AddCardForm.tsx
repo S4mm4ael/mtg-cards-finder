@@ -50,7 +50,6 @@ function AddCardForm(): JSX.Element {
       setFormValid(false);
     } else {
       setNameError('');
-      setFormValid(true);
     }
   };
   const urlHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -63,7 +62,6 @@ function AddCardForm(): JSX.Element {
       setFormValid(false);
     } else {
       setUrlError('');
-      setFormValid(true);
     }
   };
   const typeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -74,7 +72,6 @@ function AddCardForm(): JSX.Element {
       setFormValid(false);
     } else {
       setTypeError('');
-      setFormValid(true);
     }
   };
 
@@ -94,7 +91,6 @@ function AddCardForm(): JSX.Element {
       setFormValid(false);
     } else {
       setColorError('');
-      setFormValid(true);
     }
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,10 +137,12 @@ function AddCardForm(): JSX.Element {
     setRenderValid(true);
     setFormValid(false);
     addCardToArray();
+
+    alert('All data saved!');
   };
   const renderHandler = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    setFormValid(true);
+    setFormValid(false);
 
     setName('');
     setType('Choose card type');
@@ -152,6 +150,9 @@ function AddCardForm(): JSX.Element {
     setIncollection(false);
     setUrl('');
 
+    setNameError('Name cannot be empty!');
+    setColorError('Choose color!');
+    setTypeError('Please select type');
     clearColors();
   };
   const addCardToArray = (): void => {
@@ -169,7 +170,7 @@ function AddCardForm(): JSX.Element {
     cardArray.push(card);
   };
   return (
-    <section className={styles.add__section}>
+    <section id="add-card-form" className={styles.add__section}>
       <h2 className={styles.add__header}>Create your card</h2>
       <form className={styles.add__table}>
         <label className={styles.add__text}>
@@ -303,6 +304,7 @@ function AddCardForm(): JSX.Element {
         <span className={styles.required}>* - required fields</span>
         <button
           type="submit"
+          id="submit"
           onClick={(e) => submitHandler(e)}
           disabled={!formValid}
           className={`${styles.submit__button} `}
