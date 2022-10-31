@@ -179,6 +179,7 @@ function AddCardForm(): JSX.Element {
             <input
               onChange={(e) => nameHandler(e)}
               onBlur={(e) => blurHandler(e)}
+              data-testid="name"
               name="name"
               type="text"
               className={styles.textbox}
@@ -231,6 +232,7 @@ function AddCardForm(): JSX.Element {
               onBlur={(e) => blurHandler(e)}
               name="type"
               id="card-type"
+              data-testid="type"
               value={type}
             >
               {types.map(({ type }, index) => {
