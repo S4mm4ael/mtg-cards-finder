@@ -28,13 +28,15 @@ describe('When user fill fields ', () => {
   test('Should change type value', async () => {
     render(<AddCardForm />);
     const inputEl = screen.getByTestId('type') as HTMLInputElement;
-    await userEvent.type(inputEl, 'Creature');
+    await userEvent.selectOptions(inputEl, 'Creature');
     expect(screen.getByTestId('type')).toHaveValue('Creature');
   });
-});
-describe('When user fill all fields correct', () => {
-  it.todo('Render Card component with proper fields');
-});
-describe('When user click "One more" button ', () => {
-  it.todo(' it clear the form');
+  test('Should click on colors checkboxes', async () => {
+    render(<AddCardForm />);
+    for (let i = 0; i < 5; i++) {
+      const inputEl = screen.getByTestId(`color-${i}`) as HTMLInputElement;
+      await userEvent.click(inputEl);
+      expect(screen.getByTestId('color-0')).toBeChecked();
+    }
+  });
 });

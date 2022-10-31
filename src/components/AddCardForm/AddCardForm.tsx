@@ -208,6 +208,7 @@ function AddCardForm(): JSX.Element {
                         className={styles.hidden__checkbox}
                         type="checkbox"
                         id={`color-${index}`}
+                        data-testid={`color-${index}`}
                         name="color"
                         value={color}
                       />
