@@ -1,10 +1,8 @@
 export interface ICard {
-  id: number;
-  name: string;
-  types: string[];
-  incollection: boolean;
-  colors: string[];
-  date: string;
-  imageUrl: string;
+  id?: string;
+  name?: string;
+  types?: string[];
+  colors?: string[];
+  imageUrl?: string;
   image?: File | null;
 }

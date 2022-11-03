@@ -3,19 +3,10 @@ import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
 
-export function Card({
-  id,
-  name,
-  types,
-  incollection,
-  colors,
-  date,
-  imageUrl,
-  image,
-}: ICard): JSX.Element {
+export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
   return (
     <div
-      id={`card-${id + 1}`}
+      id={`card-${id}`}
       style={{ background: `linear-gradient(180deg, #ffffff 0%, ${colors} 120%)` }}
       className={`${styles.card}`}
     >
@@ -28,7 +19,7 @@ export function Card({
       />
       <span className={styles.card__header}>Colors:</span>
       <div className={styles.color__wrapper}>
-        {colors.map((color: string) => (
+        {colors?.map((color: string) => (
           <div
             style={{ backgroundColor: `${color}` }}
             key={color}
@@ -37,20 +28,10 @@ export function Card({
         ))}
       </div>
 
-      <span className={styles.card__header}>Type(s):</span>
-      {types.map((type: string) => (
+      <span className={styles.card__header}>Type:</span>
+      {types?.map((type: string) => (
         <b key={type}>{type}</b>
       ))}
-      <span className={styles.card__header}>FAQ:</span>
-      <b> {date} </b>
-      <span className={styles.card__header}>Availability:</span>
-      <div className="row">
-        {incollection === false ? (
-          <i className="fa-solid fa-xmark"></i>
-        ) : (
-          <i className="fa-solid fa-check"></i>
-        )}
-      </div>
     </div>
   );
 }

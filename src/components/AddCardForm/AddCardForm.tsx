@@ -7,7 +7,7 @@ import { types } from './types';
 import { ICard } from '../Card/ICard';
 const cardArray: ICard[] = [];
 function AddCardForm(): JSX.Element {
-  let id = 0;
+  let id = '0';
   const defaultDate = new Date().toISOString().slice(0, 10);
   const wrapper = document.getElementById('card-wrapper');
 
@@ -161,9 +161,7 @@ function AddCardForm(): JSX.Element {
       id: id,
       name: name,
       types: [type],
-      incollection: incollection,
       colors: Array.from(colorSet),
-      date: date,
       imageUrl: url,
       image: selectedImage,
     };
