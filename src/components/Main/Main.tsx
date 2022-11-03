@@ -1,18 +1,12 @@
 import React from 'react';
 import Search from '../Search/Search';
-import styles from '../Card/Card.module.css';
-import { Card } from 'components/Card/Card';
-import { cardArray } from 'components/Card/cardData';
+import Result from 'components/Result/Result';
 
 function Main(): JSX.Element {
   return (
     <main>
       <Search />
-      <section className={styles.card__section}>
-        {cardArray.map((item) => (
-          <Card key={item.name} {...item} />
-        ))}
-      </section>
+      <Result />
     </main>
   );
 }
