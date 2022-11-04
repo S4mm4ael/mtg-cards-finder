@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 
-function SearchResultFetch() {
+function SearchResultFetch({ url = 'https://api.magicthegathering.io/v1/cards' }) {
   const [cardsList, setCardsList] = useState<{ cards: { name: string }[] }>();
-  const url = 'https://api.magicthegathering.io/v1/cards';
 
   useEffect(() => {
     fetch(url)
@@ -20,7 +19,7 @@ function SearchResultFetch() {
       .then(() => {
         console.log(cardsList?.cards[0]);
       });
-  }, []);
+  });
   return (
     <section className={styles.card__section}>
       {cardsList && cardsList.cards.map((item, index) => <Card key={index} {...item} />)}

@@ -3,10 +3,11 @@ import Search from '../Search/Search';
 import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
 
 function Main(): JSX.Element {
+  const query = 'https://api.magicthegathering.io/v1/cards';
   return (
     <main>
       <Search />
-      <SearchResultFetch />
+      <SearchResultFetch url={query} />
     </main>
   );
 }
