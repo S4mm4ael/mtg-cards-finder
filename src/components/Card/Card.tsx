@@ -19,13 +19,31 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
       />
       <span className={styles.card__header}>Colors:</span>
       <div className={styles.color__wrapper}>
-        {colors?.map((color: string) => (
-          <div
-            style={{ backgroundColor: `${color}` }}
-            key={color}
-            className={styles.card__color}
-          ></div>
-        ))}
+        {colors?.map((color: string) => {
+          switch (color) {
+            case 'W':
+              color = 'white';
+              break;
+            case 'B':
+              color = 'black';
+              break;
+            case 'G':
+              color = 'green';
+              break;
+            case 'R':
+              color = 'red';
+              break;
+            default:
+              color = 'blue';
+          }
+          return (
+            <div
+              style={{ backgroundColor: `${color}` }}
+              key={color}
+              className={styles.card__color}
+            ></div>
+          );
+        })}
       </div>
 
       <span className={styles.card__header}>Type:</span>

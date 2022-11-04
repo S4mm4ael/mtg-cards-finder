@@ -3,7 +3,9 @@ import Search from '../Search/Search';
 import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
 
 function Main(): JSX.Element {
-  const query = 'https://api.magicthegathering.io/v1/cards';
+  const page = Math.floor(Math.random() * (100 - 1)) + 1;
+  const pageSize = 10;
+  const query = `https://api.magicthegathering.io/v1/cards?page=${page}&pageSize=${pageSize}`;
   return (
     <main>
       <Search />
