@@ -43,3 +43,14 @@ body{
 .search__wrap{
   width: 30%;
 }
+@media (max-width: 768px) {
+  .searchTerm {
+    height: 40px;
+  }
+  .searchButton {
+height: 56px;
+  }
+  .search__wrap{
+    width: 80%;
+  }
+}
