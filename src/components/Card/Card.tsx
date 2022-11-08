@@ -7,7 +7,27 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
   return (
     <div
       id={`card-${id}`}
-      style={{ background: `linear-gradient(180deg, #ffffff 0%, ${colors} 120%)` }}
+      style={{
+        background: `linear-gradient(180deg, #ffffff 0%, ${colors?.map((color: string) => {
+          switch (color) {
+            case 'W':
+              color = 'white';
+              break;
+            case 'B':
+              color = 'black';
+              break;
+            case 'G':
+              color = 'green';
+              break;
+            case 'R':
+              color = 'red';
+              break;
+            default:
+              color = 'blue';
+          }
+          return color;
+        })} 120%)`,
+      }}
       className={`${styles.card}`}
     >
       <h5 className={styles.card__title}>{name}</h5>

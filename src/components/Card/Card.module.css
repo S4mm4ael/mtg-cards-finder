@@ -24,7 +24,7 @@ justify-content: center;
   transition: .3s;
 }
 .card:hover{
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 .card__img{
   border-radius: 10px;

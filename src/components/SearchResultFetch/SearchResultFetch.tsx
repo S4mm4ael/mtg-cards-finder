@@ -26,7 +26,7 @@ function SearchResultFetch({ url = '' }) {
         setIsPending(false);
         setError(err.message);
       });
-  }, []);
+  }, [url]);
 
   return (
     <section className={styles.card__section}>
