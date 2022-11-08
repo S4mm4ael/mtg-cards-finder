@@ -6,6 +6,7 @@ function SearchResultFetch({ url = '' }) {
   const [cardsList, setCardsList] = useState<{
     cards: { id: string; name: string; types?: string[]; colors: string[]; imageUrl?: string }[];
   }>();
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     fetch(url)
@@ -14,10 +15,12 @@ function SearchResultFetch({ url = '' }) {
       })
       .then((data) => {
         setCardsList(data);
+        setIsPending(false);
       });
   });
   return (
     <section className={styles.card__section}>
+      {isPending && <div>Loading...</div>}
       {cardsList &&
         cardsList.cards.map((item, index) => {
           if (item.imageUrl) {
