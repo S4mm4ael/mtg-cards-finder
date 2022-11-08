@@ -7,19 +7,29 @@ function SearchResultFetch({ url = '' }) {
     cards: { id: string; name: string; types?: string[]; colors: string[]; imageUrl?: string }[];
   }>();
   const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(url)
       .then((res) => {
+        if (!res.ok) {
+          throw Error('Could not fetch the data');
+        }
         return res.json();
       })
       .then((data) => {
         setCardsList(data);
         setIsPending(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsPending(false);
+        setError(err.message);
       });
   });
   return (
     <section className={styles.card__section}>
+      {error && <div>{error}</div>}
       {isPending && <div>Loading...</div>}
       {cardsList &&
         cardsList.cards.map((item, index) => {
