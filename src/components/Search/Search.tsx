@@ -5,6 +5,7 @@ import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 function Search({ startQuery = '' }): JSX.Element {
   const [query, setQuery] = useState(startQuery);
   const [searchValid, setSearchValid] = useState(true);
+  const [minimazed, setMinimazed] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -20,29 +21,47 @@ function Search({ startQuery = '' }): JSX.Element {
 
   return (
     <section className={styles.search__section}>
-      <div className={styles.search__wrap}>
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-          id="search"
-          className={styles.search}
-        >
-          <input
-            id="search-box"
-            type="text"
-            className={styles.searchTerm}
-            placeholder="What are you looking for?"
-            defaultValue={getLocalStorage()}
-          />
-          <button type="submit" className={styles.searchButton}>
-            <i className="fa fa-search"></i>
-          </button>
-        </form>
+      <div className={styles.top__wrap}>
+        <div className={styles.search__wrap}>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+            id="search"
+            className={styles.search}
+          >
+            <input
+              id="search-box"
+              type="text"
+              className={styles.searchTerm}
+              placeholder="What are you looking for?"
+              defaultValue={getLocalStorage()}
+            />
+            <button type="submit" className={styles.searchButton}>
+              <i className="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+        <div className={styles.min__wrap}>
+          Minimize cards:
+          <label className="toggler-wrapper style-9">
+            <input
+              name="minimaze"
+              type="checkbox"
+              onChange={() => {
+                minimazed ? setMinimazed(false) : setMinimazed(true);
+              }}
+            />
+            <div className="toggler-slider">
+              <div className="toggler-knob"></div>
+            </div>
+          </label>
+        </div>
       </div>
+
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch url={query} />
+      <SearchResultFetch url={query} min={minimazed} />
     </section>
   );
 }

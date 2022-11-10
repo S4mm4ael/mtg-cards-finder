@@ -5,4 +5,5 @@ export interface ICard {
   colors: string[];
   imageUrl?: string;
   image?: File | null;
+  min?: boolean;
 }

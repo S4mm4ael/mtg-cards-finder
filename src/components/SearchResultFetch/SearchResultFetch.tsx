@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 
-function SearchResultFetch({ url = '' }) {
+function SearchResultFetch({ url = '', min = false }) {
   const [cardsList, setCardsList] = useState<{
     cards: { id: string; name: string; types?: string[]; colors: string[]; imageUrl?: string }[];
   } | null>();
@@ -48,6 +48,7 @@ function SearchResultFetch({ url = '' }) {
                 colors={item.colors}
                 imageUrl={item.imageUrl}
                 types={item.types}
+                min={min}
               />
             );
           }

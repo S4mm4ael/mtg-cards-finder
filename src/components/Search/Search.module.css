@@ -50,6 +50,20 @@ body{
   justify-content: center;
   gap: 20px;
 }
+.top__wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.min__wrap{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 @media (max-width: 768px) {
   .searchTerm {
     height: 40px;
