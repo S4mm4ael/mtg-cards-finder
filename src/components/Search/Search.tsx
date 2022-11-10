@@ -3,48 +3,44 @@ import React, { useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 function Search({ startQuery = '' }): JSX.Element {
-  const [name, setName] = useState('');
+  const [query, setQuery] = useState(startQuery);
+  const [searchValid, setSearchValid] = useState(true);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    setLocalStorage(event.target.value);
-    setName(event.target.value);
-
-    const url = `https://api.magicthegathering.io/v1/cards?name=${name}`;
-    console.log(url);
-
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('Could not fetch the data');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-box') as HTMLInputElement;
+    handleChange(searchInput.value);
+  }
+  function handleChange(query: string): void {
+    setLocalStorage(query);
+    query.length > 3
+      ? setQuery(`https://api.magicthegathering.io/v1/cards?name=${query}`)
+      : setSearchValid(false);
   }
 
   return (
     <section className={styles.search__section}>
       <div className={styles.search__wrap}>
-        <div id="search" className={styles.search}>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+          id="search"
+          className={styles.search}
+        >
           <input
             id="search-box"
             type="text"
             className={styles.searchTerm}
             placeholder="What are you looking for?"
-            onChange={handleChange}
             defaultValue={getLocalStorage()}
           />
           <button type="submit" className={styles.searchButton}>
             <i className="fa fa-search"></i>
           </button>
-        </div>
+        </form>
       </div>
-      <SearchResultFetch url={startQuery} />
+      <SearchResultFetch url={query} />
     </section>
   );
 }
