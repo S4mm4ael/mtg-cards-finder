@@ -14,7 +14,7 @@ function Search({ startQuery = '' }): JSX.Element {
   function handleChange(query: string): void {
     setLocalStorage(query);
     query.length > 3
-      ? setQuery(`https://api.magicthegathering.io/v1/cards?name=${query}`)
+      ? (setQuery(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
       : setSearchValid(false);
   }
 
@@ -40,6 +40,7 @@ function Search({ startQuery = '' }): JSX.Element {
           </button>
         </form>
       </div>
+      {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
       <SearchResultFetch url={query} />
     </section>
   );
