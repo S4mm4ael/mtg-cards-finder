@@ -20,7 +20,7 @@ function Search({ startQuery = '' }): JSX.Element {
   }
 
   return (
-    <section className={styles.search__section}>
+    <section className={styles.search__section} id="search-section">
       <div className={styles.top__wrap}>
         <div className={styles.search__wrap}>
           <form

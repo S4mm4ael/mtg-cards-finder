@@ -4,9 +4,20 @@ import '../../index.css';
 import { ICard } from './ICard';
 
 export function Card({ id, name, types, colors, imageUrl, image, min }: ICard): JSX.Element {
+  const section = document.getElementById('search-section');
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (min) {
+      console.log((e.target as HTMLElement).id);
+      section!.style.display = 'none';
+    } else {
+      console.log('All good');
+    }
+  }
+
   return (
     <div
       id={`card-${id}`}
+      onClick={(e) => handleClick(e)}
       style={{
         background: `linear-gradient(180deg, #ffffff 0%, ${colors?.map((color: string) => {
           switch (color) {
