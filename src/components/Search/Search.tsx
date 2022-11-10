@@ -41,6 +41,7 @@ function Search({ startQuery = '' }): JSX.Element {
         </form>
       </div>
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
+
       <SearchResultFetch url={query} />
     </section>
   );
