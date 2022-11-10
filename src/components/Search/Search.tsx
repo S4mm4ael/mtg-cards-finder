@@ -1,12 +1,14 @@
+import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
 import React, { useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
-function Search(): JSX.Element {
+function Search({ startQuery = '' }): JSX.Element {
   const [name, setName] = useState('');
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     setLocalStorage(event.target.value);
     setName(event.target.value);
+
     const url = `https://api.magicthegathering.io/v1/cards?name=${name}`;
     console.log(url);
 
@@ -26,21 +28,24 @@ function Search(): JSX.Element {
   }
 
   return (
-    <div className={styles.search__wrap}>
-      <div id="search" className={styles.search}>
-        <input
-          id="search-box"
-          type="text"
-          className={styles.searchTerm}
-          placeholder="What are you looking for?"
-          onChange={handleChange}
-          defaultValue={getLocalStorage()}
-        />
-        <button type="submit" className={styles.searchButton}>
-          <i className="fa fa-search"></i>
-        </button>
+    <section className={styles.search__section}>
+      <div className={styles.search__wrap}>
+        <div id="search" className={styles.search}>
+          <input
+            id="search-box"
+            type="text"
+            className={styles.searchTerm}
+            placeholder="What are you looking for?"
+            onChange={handleChange}
+            defaultValue={getLocalStorage()}
+          />
+          <button type="submit" className={styles.searchButton}>
+            <i className="fa fa-search"></i>
+          </button>
+        </div>
       </div>
-    </div>
+      <SearchResultFetch url={startQuery} />
+    </section>
   );
 }
 

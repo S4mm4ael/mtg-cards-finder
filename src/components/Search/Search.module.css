@@ -41,7 +41,14 @@ body{
 }
 
 .search__wrap{
-  width: 30%;
+  width: 300px;
+}
+.search__section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 @media (max-width: 768px) {
   .searchTerm {
