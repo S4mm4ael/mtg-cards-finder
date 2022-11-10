@@ -5,12 +5,14 @@ import { Card } from 'components/Card/Card';
 function SearchResultFetch({ url = '' }) {
   const [cardsList, setCardsList] = useState<{
     cards: { id: string; name: string; types?: string[]; colors: string[]; imageUrl?: string }[];
-  }>();
+  } | null>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
 
   useEffect(() => {
+    setCardsList(null);
+    setIsPending(true);
     fetch(url)
       .then((res) => {
         if (!res.ok) {
