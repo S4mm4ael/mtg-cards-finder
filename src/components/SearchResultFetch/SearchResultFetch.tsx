@@ -8,6 +8,7 @@ function SearchResultFetch({ url = '' }) {
   }>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const [nothing, setNothing] = useState(false);
 
   useEffect(() => {
     fetch(url)
@@ -21,6 +22,7 @@ function SearchResultFetch({ url = '' }) {
         setCardsList(data);
         setIsPending(false);
         setError(null);
+        data.cards.length === 0 ? setNothing(true) : setNothing(false);
       })
       .catch((err) => {
         setIsPending(false);
@@ -31,7 +33,8 @@ function SearchResultFetch({ url = '' }) {
   return (
     <section className={styles.card__section}>
       {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
+      {isPending && <div>Download data...</div>}
+      {nothing && <div>Nothing found...</div>}
       {cardsList &&
         cardsList.cards.map((item, index) => {
           if (item.imageUrl) {
