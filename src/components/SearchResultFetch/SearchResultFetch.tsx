@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
+import { Modal } from 'components/Modal/Modal';
+import { ICard } from 'components/Card/ICard';
 
 function SearchResultFetch({ url = '', min = false }) {
   const [cardsList, setCardsList] = useState<{
-    cards: { id: string; name: string; types?: string[]; colors: string[]; imageUrl?: string }[];
+    cards: ICard[];
   } | null>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const [selectedCard, setSelectedCard] = useState('');
 
   useEffect(() => {
     setCardsList(null);
@@ -37,6 +41,7 @@ function SearchResultFetch({ url = '', min = false }) {
       {error && <div>{error}</div>}
       {isPending && <div>Download data...</div>}
       {nothing && <div>Nothing found...</div>}
+      {cardsList && <Modal array={cardsList} id={selectedCard} />}
       {cardsList &&
         cardsList.cards.map((item, index) => {
           if (item.imageUrl) {
@@ -49,6 +54,7 @@ function SearchResultFetch({ url = '', min = false }) {
                 imageUrl={item.imageUrl}
                 types={item.types}
                 min={min}
+                passSelectedCard={setSelectedCard}
               />
             );
           }

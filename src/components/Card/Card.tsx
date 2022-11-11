@@ -3,14 +3,21 @@ import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
 
-export function Card({ id, name, types, colors, imageUrl, image, min }: ICard): JSX.Element {
-  const section = document.getElementById('search-section');
+export function Card({
+  id,
+  name,
+  types,
+  colors,
+  imageUrl,
+  image,
+  min,
+  passSelectedCard,
+}: ICard): JSX.Element {
   function handleClick(e: React.MouseEvent<HTMLDivElement>) {
     if (min) {
-      console.log((e.target as HTMLElement).id);
-      section!.style.display = 'none';
-    } else {
-      console.log('All good');
+      passSelectedCard!((e.target as HTMLElement).id);
+      //cardsList?.cards[cardsList?.cards.findIndex((el) => el.id === selectedCard)]
+      //section!.style.display = 'none';
     }
   }
 
