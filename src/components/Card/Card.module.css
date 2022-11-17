@@ -65,3 +65,7 @@ justify-content: center;
   flex-direction: row;
   pointer-events: none;
 }
+.modal{
+  position: absolute;
+  z-index: 1;
+}
