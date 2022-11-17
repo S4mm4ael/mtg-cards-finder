@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  min-height: 100vh;
 }
 
 code {
@@ -29,4 +30,7 @@ main{
   padding: 20px;
   align-items: center;
   flex-direction: column;
+}
+#root{
+  height: 100%;
 }
