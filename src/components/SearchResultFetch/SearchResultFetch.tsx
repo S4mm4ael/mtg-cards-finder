@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
 
-function SearchResultFetch({ url = '', min = false }) {
+interface ISearchResultFetch {
+  url: string;
+  min: boolean;
+  setShowShadow: Dispatch<SetStateAction<boolean>>;
+}
+
+function SearchResultFetch({ url, min, setShowShadow }: ISearchResultFetch) {
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
@@ -50,6 +56,7 @@ function SearchResultFetch({ url = '', min = false }) {
                 imageUrl={item.imageUrl}
                 types={item.types}
                 min={min}
+                setShowShadow={setShowShadow}
               />
             );
           }

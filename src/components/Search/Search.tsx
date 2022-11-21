@@ -6,6 +6,7 @@ function Search({ startQuery = '' }): JSX.Element {
   const [query, setQuery] = useState(startQuery);
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
+  const [showShadow, setShowShadow] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -21,6 +22,7 @@ function Search({ startQuery = '' }): JSX.Element {
 
   return (
     <section className={styles.search__section} id="search-section">
+      {showShadow && <div className={styles.shadowed}></div>}
       <div className={styles.top__wrap}>
         <div className={styles.search__wrap}>
           <form
@@ -61,7 +63,7 @@ function Search({ startQuery = '' }): JSX.Element {
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch url={query} min={minimazed} />
+      <SearchResultFetch url={query} min={minimazed} setShowShadow={setShowShadow} />
     </section>
   );
 }

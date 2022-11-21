@@ -64,6 +64,13 @@ body{
   align-items: center;
   gap: 10px;
 }
+.shadowed{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  z-index: 10;
+}
 @media (max-width: 768px) {
   .searchTerm {
     height: 40px;

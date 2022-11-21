@@ -164,6 +164,7 @@ function AddCardForm(): JSX.Element {
       colors: Array.from(colorSet),
       imageUrl: url,
       image: selectedImage,
+      setShowShadow: Boolean,
     };
     cardArray.push(card);
   };
