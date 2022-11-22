@@ -63,12 +63,7 @@ function Search({ startQuery = '' }): JSX.Element {
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch
-        url={query}
-        min={minimazed}
-        setShowShadow={setShowShadow}
-        modal={showModal}
-      />
+      <SearchResultFetch url={query} min={minimazed} setShowShadow={setShowShadow} />
     </section>
   );
 }

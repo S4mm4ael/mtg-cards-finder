@@ -4,6 +4,6 @@ interface ISearchResultFetch {
   url: string;
   min: boolean;
   setShowShadow: Dispatch<SetStateAction<boolean>>;
-  modal: boolean;
+  modal?: boolean;
 }
 export default ISearchResultFetch;
