@@ -7,7 +7,6 @@ function Search({ startQuery = '' }): JSX.Element {
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
   const [showShadow, setShowShadow] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
