@@ -38,7 +38,7 @@ export function Card({
           onClick={(e) => {
             closeModal(e);
           }}
-          className={styles.modal__cross}
+          className={`cross ${styles.modal__cross}`}
           id="modal-cross"
         >
           X
@@ -68,12 +68,12 @@ export function Card({
             return color;
           })} 120%)`,
         }}
-        className={`${styles.card} ${modalOpen ? styles.modal : styles.nomodal}`}
+        className={`card ${styles.card} ${modalOpen ? styles.modal : styles.nomodal}`}
       >
         <h5 className={styles.card__title}>{name}</h5>
         <img
           style={min && !modalOpen ? { display: 'none' } : { display: 'block' }}
-          className={styles.card__img}
+          className={`${styles.card__img}`}
           width={200}
           src={`${image ? URL.createObjectURL(image) : imageUrl}`}
           alt={name}

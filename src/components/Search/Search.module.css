@@ -68,7 +68,8 @@ body{
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: #f2f2f2;
+  background: rgb(233,229,231);
+  background: radial-gradient(circle, rgba(233,229,231,1) 0%, rgba(56,81,94,1) 83%);
   z-index: 10;
   top: 0;
 }

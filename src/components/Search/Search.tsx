@@ -9,14 +9,6 @@ function Search({ startQuery = '' }): JSX.Element {
   const [showShadow, setShowShadow] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
-    const element = e.target as HTMLDivElement;
-    if (!element.classList.contains(styles.card)) {
-      setShowShadow(false);
-      setShowModal(false);
-    }
-  }
-
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     const searchInput = document.getElementById('search-box') as HTMLInputElement;
@@ -31,14 +23,7 @@ function Search({ startQuery = '' }): JSX.Element {
 
   return (
     <section className={styles.search__section} id="search-section">
-      {showShadow && (
-        <div
-          className={styles.shadowed}
-          onClick={(e) => {
-            closeModal(e);
-          }}
-        ></div>
-      )}
+      {showShadow && <div className={styles.shadowed}></div>}
       <div className={styles.top__wrap}>
         <div className={styles.search__wrap}>
           <form
