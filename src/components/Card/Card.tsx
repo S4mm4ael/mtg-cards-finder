@@ -12,8 +12,9 @@ export function Card({
   image,
   min,
   setShowShadow,
+  modal,
 }: ICard): JSX.Element {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(modal);
 
   function openModal() {
     if (min) {
@@ -31,7 +32,7 @@ export function Card({
   }
 
   return (
-    <div className={styles.modal_wrapper}>
+    <div className={`${styles.modal_wrapper} ${modalOpen ? styles.modal : styles.modal_wrapper}`}>
       {modalOpen && (
         <div
           onClick={(e) => {
@@ -67,7 +68,7 @@ export function Card({
             return color;
           })} 120%)`,
         }}
-        className={`${styles.card} ${modalOpen ? styles.modal : ''}`}
+        className={`${styles.card} ${modalOpen ? styles.modal : styles.nomodal}`}
       >
         <h5 className={styles.card__title}>{name}</h5>
         <img

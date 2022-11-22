@@ -7,6 +7,15 @@ function Search({ startQuery = '' }): JSX.Element {
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
   const [showShadow, setShowShadow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
+    const element = e.target as HTMLDivElement;
+    if (!element.classList.contains(styles.card)) {
+      setShowShadow(false);
+      setShowModal(false);
+    }
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -22,7 +31,14 @@ function Search({ startQuery = '' }): JSX.Element {
 
   return (
     <section className={styles.search__section} id="search-section">
-      {showShadow && <div className={styles.shadowed}></div>}
+      {showShadow && (
+        <div
+          className={styles.shadowed}
+          onClick={(e) => {
+            closeModal(e);
+          }}
+        ></div>
+      )}
       <div className={styles.top__wrap}>
         <div className={styles.search__wrap}>
           <form
@@ -63,7 +79,12 @@ function Search({ startQuery = '' }): JSX.Element {
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch url={query} min={minimazed} setShowShadow={setShowShadow} />
+      <SearchResultFetch
+        url={query}
+        min={minimazed}
+        setShowShadow={setShowShadow}
+        modal={showModal}
+      />
     </section>
   );
 }
