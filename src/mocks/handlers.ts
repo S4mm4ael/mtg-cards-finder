@@ -1,7 +1,8 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get('https://api.magicthegathering.io/v1/cards?page=1&pageSize=1', (req, res, ctx) => {
+  rest.get('https://api.magicthegathering.io/v1/cards', (req, res, ctx) => {
+    req.url.searchParams.get('id=5f8287b1-5bb6-5f4c-ad17-316a40d5bb0c');
     return res(
       ctx.status(200),
       ctx.json({
