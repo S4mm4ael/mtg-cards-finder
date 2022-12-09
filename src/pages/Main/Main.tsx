@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from '../Search/Search';
+import Search from '../../components/Search/Search';
 
 function Main(): JSX.Element {
   const page = Math.floor(Math.random() * (100 - 1)) + 1;

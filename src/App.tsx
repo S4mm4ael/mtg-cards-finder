@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import NotFound from './components/NotFound/NotFound';
-import About from './components/About/About';
+import Main from './pages/Main/Main';
+import NotFound from './pages/NotFound/NotFound';
+import About from './pages/About/About';
 import stylesApp from './App.module.css';
 import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation, Link } from 'react-router-dom';
-import AddCardForm from './components/AddCardForm/AddCardForm';
+import AddCardForm from './pages/AddCardForm/AddCardForm';
 
 function App() {
   const location = useLocation();

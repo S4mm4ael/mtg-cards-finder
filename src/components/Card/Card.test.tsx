@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import Main from 'components/Main/Main';
+import Main from '../../pages/Main/Main';
 
 describe('when main page loaded', () => {
   it('should contain first card', () => {

@@ -4,7 +4,7 @@ import styles from './AddCardForm.module.css';
 import { Card } from 'components/Card/Card';
 import { colors } from './colors';
 import { types } from './types';
-import { ICard } from '../Card/ICard';
+import { ICard } from '../../components/Card/ICard';
 const cardArray: ICard[] = [];
 function AddCardForm(): JSX.Element {
   let id = '0';
