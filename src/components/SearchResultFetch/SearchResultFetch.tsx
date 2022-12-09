@@ -3,6 +3,7 @@ import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
 import ISearchResultFetch from './ISearchResultFetch';
+import { getCards } from 'utils/fetch';
 
 function SearchResultFetch({ url, min, setShowShadow, modal }: ISearchResultFetch) {
   const [cardsList, setCardsList] = useState<{
@@ -15,13 +16,7 @@ function SearchResultFetch({ url, min, setShowShadow, modal }: ISearchResultFetc
   useEffect(() => {
     setCardsList(null);
     setIsPending(true);
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('Could not fetch the data');
-        }
-        return res.json();
-      })
+    getCards(url)
       .then((data) => {
         setCardsList(data);
         setIsPending(false);
