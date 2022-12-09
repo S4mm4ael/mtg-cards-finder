@@ -9,5 +9,4 @@ export interface ICard {
   image?: File | null;
   min?: boolean;
   setShowShadow: Dispatch<SetStateAction<boolean>>;
-  modal?: boolean;
 }

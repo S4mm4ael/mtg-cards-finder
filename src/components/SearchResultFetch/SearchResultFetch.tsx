@@ -5,7 +5,7 @@ import { ICard } from 'components/Card/ICard';
 import ISearchResultFetch from './ISearchResultFetch';
 import { getCards } from 'utils/fetch';
 
-function SearchResultFetch({ url, min, setShowShadow, modal }: ISearchResultFetch) {
+function SearchResultFetch({ url, min, setShowShadow }: ISearchResultFetch) {
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
@@ -47,7 +47,6 @@ function SearchResultFetch({ url, min, setShowShadow, modal }: ISearchResultFetc
                 types={item.types}
                 min={min}
                 setShowShadow={setShowShadow}
-                modal={modal}
               />
             );
           }
