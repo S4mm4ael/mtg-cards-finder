@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
+import { GlobalContext } from 'contexts/Context';
 
-export function Card({ id, name, types, colors, imageUrl, image, min }: ICard): JSX.Element {
+export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
+  const { min } = useContext(GlobalContext);
+
   return (
     <div
       id={`card-${id}`}

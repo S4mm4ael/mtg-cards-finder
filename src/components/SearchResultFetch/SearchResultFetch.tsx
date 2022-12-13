@@ -1,12 +1,11 @@
-import React, { useEffect, useState, createContext, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
-import ISearchResultFetch from './ISearchResultFetch';
 import { getCards } from 'utils/fetch';
 import { GlobalContext } from 'contexts/Context';
 
-function SearchResultFetch({ min }: ISearchResultFetch) {
+function SearchResultFetch() {
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
@@ -53,7 +52,6 @@ function SearchResultFetch({ min }: ISearchResultFetch) {
                   colors={item.colors}
                   imageUrl={item.imageUrl}
                   types={item.types}
-                  min={min}
                 />
               );
             }

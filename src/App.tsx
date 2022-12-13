@@ -12,9 +12,6 @@ import { GlobalContext } from 'contexts/Context';
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
-  // const page = Math.floor(Math.random() * (100 - 1)) + 1;
-  // const pageSize = 10;
-  // const initialUrl = `https://api.magicthegathering.io/v1/cards?page=${page}&pageSize=${pageSize}`;
 
   function getCurrentTitle() {
     switch (path) {
@@ -29,9 +26,9 @@ function App() {
     }
   }
   const [url, setUrl] = useState('https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10');
-
+  const [min, setMin] = useState(false);
   return (
-    <GlobalContext.Provider value={{ url, setUrl }}>
+    <GlobalContext.Provider value={{ url, setUrl, min, setMin }}>
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">

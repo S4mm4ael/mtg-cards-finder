@@ -7,9 +7,8 @@ import { GlobalContext } from 'contexts/Context';
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
-  const [minimazed, setMinimazed] = useState(false);
 
-  const { setUrl } = useContext(GlobalContext);
+  const { min, setUrl, setMin } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -57,11 +56,13 @@ function Search(): JSX.Element {
               name="minimaze"
               type="checkbox"
               onChange={() => {
-                minimazed ? setMinimazed(false) : setMinimazed(true);
+                min ? setMin(false) : setMin(true);
               }}
             />
             <div className="toggler-slider">
-              <div className="toggler-knob"></div>
+              <div
+                className={min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'}
+              ></div>
             </div>
           </label>
         </div>
@@ -69,7 +70,7 @@ function Search(): JSX.Element {
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch min={minimazed} />
+      <SearchResultFetch />
     </section>
   );
 }
