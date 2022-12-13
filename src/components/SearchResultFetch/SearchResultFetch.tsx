@@ -5,7 +5,7 @@ import { ICard } from 'components/Card/ICard';
 import ISearchResultFetch from './ISearchResultFetch';
 import { getCards } from 'utils/fetch';
 
-function SearchResultFetch({ url, min, setShowShadow }: ISearchResultFetch) {
+function SearchResultFetch({ url, min }: ISearchResultFetch) {
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
@@ -14,8 +14,8 @@ function SearchResultFetch({ url, min, setShowShadow }: ISearchResultFetch) {
   const [nothing, setNothing] = useState(false);
 
   useEffect(() => {
-    setCardsList(null);
     setIsPending(true);
+    setNothing(false);
     getCards(url)
       .then((data) => {
         setCardsList(data);
@@ -32,25 +32,30 @@ function SearchResultFetch({ url, min, setShowShadow }: ISearchResultFetch) {
   return (
     <section className={styles.card__section}>
       {error && <div>{error}</div>}
-      {isPending && <div>Download data...</div>}
+      {isPending && (
+        <div className={styles.loader__container}>
+          <div className={styles.spinner}></div>
+        </div>
+      )}
       {nothing && <div>Nothing found...</div>}
-      {cardsList &&
-        cardsList.cards.map((item, index) => {
-          if (item.imageUrl) {
-            return (
-              <Card
-                key={index}
-                id={item.id}
-                name={item.name}
-                colors={item.colors}
-                imageUrl={item.imageUrl}
-                types={item.types}
-                min={min}
-                setShowShadow={setShowShadow}
-              />
-            );
-          }
-        })}
+      <div className={styles.render__result}>
+        {cardsList &&
+          cardsList.cards.map((item, index) => {
+            if (item.imageUrl) {
+              return (
+                <Card
+                  key={index}
+                  id={item.id}
+                  name={item.name}
+                  colors={item.colors}
+                  imageUrl={item.imageUrl}
+                  types={item.types}
+                  min={min}
+                />
+              );
+            }
+          })}
+      </div>
     </section>
   );
 }

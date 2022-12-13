@@ -1,11 +1,15 @@
 
-.card__section{
+.card__section,
+.render__result {
 display: flex;
-flex-direction: row;
+flex-direction: column;
 flex-wrap: wrap;
 gap: 20px;
 align-items: center;
 justify-content: center;
+}
+.render__result{
+flex-direction: row;
 }
 
 .card__title{
@@ -73,4 +77,23 @@ justify-content: center;
   background-color: #f2f2f2;
   z-index: 10;
   top: 0;
+}
+
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000000 transparent #000000 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }

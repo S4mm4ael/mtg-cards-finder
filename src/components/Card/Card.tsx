@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
 
-export function Card({
-  id,
-  name,
-  types,
-  colors,
-  imageUrl,
-  image,
-  min,
-  setShowShadow,
-}: ICard): JSX.Element {
+export function Card({ id, name, types, colors, imageUrl, image, min }: ICard): JSX.Element {
   return (
     <div
       id={`card-${id}`}
