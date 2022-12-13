@@ -4,7 +4,7 @@ import styles from './Header.module.css';
 
 function Header(): JSX.Element {
   return (
-    <div id="navigation" className="styles.app-header__navigation">
+    <div id="navigation" className="app-header__navigation">
       <ul className={styles.header__list}>
         <li className="header-list__item">
           <Link id="main-page" to="/">
@@ -21,11 +21,7 @@ function Header(): JSX.Element {
             About
           </Link>
         </li>
-        <li className="header-list__item">
-          <Link id="404-page" to="/404">
-            404
-          </Link>
-        </li>
+        <li className="header-list__item"></li>
       </ul>
     </div>
   );

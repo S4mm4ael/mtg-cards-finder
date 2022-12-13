@@ -5,3 +5,10 @@
   align-items: center;
   justify-content: center;
 }
+.github{
+ cursor: pointer;
+  transition: .3s;
+}
+.github:hover{
+  transform: scale(1.1);
+}
