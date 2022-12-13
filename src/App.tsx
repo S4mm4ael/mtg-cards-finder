@@ -25,6 +25,8 @@ function App() {
     }
   }
 
+  const saveCards = (url: string) => {};
+
   return (
     <div className={stylesApp.App}>
       <div className={styles.header}>

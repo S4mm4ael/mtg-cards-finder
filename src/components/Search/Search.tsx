@@ -2,8 +2,12 @@ import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
 import React, { useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
-function Search({ startQuery = '' }): JSX.Element {
-  const [query, setQuery] = useState(startQuery);
+
+import { GlobalContext, useGlobalContext } from 'contexts/Context';
+
+function Search(): JSX.Element {
+  const { url } = useGlobalContext();
+  const [query, setQuery] = useState(url);
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
 
