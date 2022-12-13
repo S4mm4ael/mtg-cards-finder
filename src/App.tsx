@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
@@ -7,12 +7,11 @@ import stylesApp from './App.module.css';
 import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './pages/AddCardForm/AddCardForm';
-import { GlobalContext, useGlobalContext } from 'contexts/Context';
+import { GlobalContext } from 'contexts/Context';
 
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
-  const { url, setUrl } = useGlobalContext();
   // const page = Math.floor(Math.random() * (100 - 1)) + 1;
   // const pageSize = 10;
   // const initialUrl = `https://api.magicthegathering.io/v1/cards?page=${page}&pageSize=${pageSize}`;
@@ -29,6 +28,7 @@ function App() {
         return '';
     }
   }
+  const [url, setUrl] = useState('https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10');
 
   return (
     <GlobalContext.Provider value={{ url, setUrl }}>

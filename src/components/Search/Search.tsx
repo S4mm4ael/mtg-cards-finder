@@ -1,14 +1,15 @@
 import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
-import { useGlobalContext } from 'contexts/Context';
+import { GlobalContext } from 'contexts/Context';
 
 function Search(): JSX.Element {
-  const { url, setUrl } = useGlobalContext();
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
+
+  const { setUrl } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -19,7 +20,7 @@ function Search(): JSX.Element {
     query.length > 3
       ? (setUrl(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
       : setSearchValid(false);
-    console.log(url);
+    console.log(query);
   }
 
   return (
