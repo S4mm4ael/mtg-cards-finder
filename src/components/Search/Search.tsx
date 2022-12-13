@@ -2,25 +2,24 @@ import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
 import React, { useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
-
-import { GlobalContext, useGlobalContext } from 'contexts/Context';
+import { useGlobalContext } from 'contexts/Context';
 
 function Search(): JSX.Element {
-  const { url } = useGlobalContext();
-  const [query, setQuery] = useState(url);
+  const { url, setUrl } = useGlobalContext();
+  const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
   const [minimazed, setMinimazed] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    const searchInput = document.getElementById('search-box') as HTMLInputElement;
-    handleChange(searchInput.value);
+    handleChange(query);
   }
   function handleChange(query: string): void {
     setLocalStorage(query);
     query.length > 3
-      ? (setQuery(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
+      ? (setUrl(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
       : setSearchValid(false);
+    console.log(url);
   }
 
   return (
@@ -42,7 +41,8 @@ function Search(): JSX.Element {
               type="text"
               className={styles.searchTerm}
               placeholder="What are you looking for?"
-              defaultValue={getLocalStorage()}
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
             />
             <button type="submit" className={styles.searchButton}>
               <i className="fa fa-search"></i>
@@ -68,7 +68,7 @@ function Search(): JSX.Element {
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch url={query} min={minimazed} />
+      <SearchResultFetch min={minimazed} />
     </section>
   );
 }

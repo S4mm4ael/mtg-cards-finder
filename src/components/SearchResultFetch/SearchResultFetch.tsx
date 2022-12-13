@@ -4,8 +4,10 @@ import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
 import ISearchResultFetch from './ISearchResultFetch';
 import { getCards } from 'utils/fetch';
+import { useGlobalContext } from 'contexts/Context';
 
-function SearchResultFetch({ url, min }: ISearchResultFetch) {
+function SearchResultFetch({ min }: ISearchResultFetch) {
+  const { url } = useGlobalContext();
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
