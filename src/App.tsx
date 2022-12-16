@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
@@ -12,6 +12,10 @@ import { GlobalContext } from 'contexts/Context';
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
+  const initialUrl = 'https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10';
+  const initialMin = false;
+  const [url, setUrl] = useState(initialUrl);
+  const [min, setMin] = useState(initialMin);
 
   function getCurrentTitle() {
     switch (path) {
@@ -25,8 +29,7 @@ function App() {
         return '';
     }
   }
-  const [url, setUrl] = useState('https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10');
-  const [min, setMin] = useState(false);
+
   return (
     <GlobalContext.Provider value={{ url, setUrl, min, setMin }}>
       <div className={stylesApp.App}>
