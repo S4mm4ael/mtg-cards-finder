@@ -5,8 +5,8 @@ import { ICard } from './ICard';
 import { GlobalContext } from 'contexts/Context';
 
 export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
-  const { min } = useContext(GlobalContext);
-
+  const { state } = useContext(GlobalContext);
+  const min = state;
   return (
     <div
       id={`card-${id}`}

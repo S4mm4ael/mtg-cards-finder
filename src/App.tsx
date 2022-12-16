@@ -8,14 +8,23 @@ import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './pages/AddCardForm/AddCardForm';
 import { GlobalContext } from 'contexts/Context';
+import { reducer } from 'reducers/reducer';
+import { updateAction } from 'reducers/reducerTypes';
 
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
   const initialUrl = 'https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10';
   const initialMin = false;
+
+  const [state, dispatch] = useReducer(reducer, initialMin);
+
   const [url, setUrl] = useState(initialUrl);
-  const [min, setMin] = useState(initialMin);
+  //const [min, setMin] = useState(initialMin);
+
+  function setMin() {
+    dispatch(updateAction);
+  }
 
   function getCurrentTitle() {
     switch (path) {
@@ -31,7 +40,7 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider value={{ url, setUrl, min, setMin }}>
+    <GlobalContext.Provider value={{ url, setUrl, setMin, state }}>
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">

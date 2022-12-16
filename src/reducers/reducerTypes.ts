@@ -1,11 +1,12 @@
-export type State = {
-  value: string;
-};
-enum ActionKind {
-  Update = 'UPDATE',
+export enum ActionKind {
+  UpdateUrl = 'UPDATE_URL',
+  UpdateMin = 'UPDATE_MIN',
 }
 
 export type Action = {
   type: ActionKind;
-  payload: string;
+};
+
+export const updateAction: Action = {
+  type: ActionKind.UpdateMin,
 };

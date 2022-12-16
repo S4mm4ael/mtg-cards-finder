@@ -8,7 +8,9 @@ function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  const { min, setUrl, setMin } = useContext(GlobalContext);
+  const { setUrl, setMin, state } = useContext(GlobalContext);
+
+  const min = state;
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
