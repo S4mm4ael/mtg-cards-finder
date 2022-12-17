@@ -6,10 +6,10 @@ export function reducer(state: State, action: Action) {
   switch (type) {
     case ActionKind.UpdateMin:
       state.min === true ? (state.min = false) : (state.min = true);
-      return { ...state };
+      return { ...state, payload };
     case ActionKind.UpdateUrl:
       state.url = payload;
-      return { ...state };
+      return { ...state, payload };
     default:
       return state;
   }
