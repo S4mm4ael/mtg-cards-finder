@@ -1,14 +1,15 @@
-import { Action, ActionKind } from './reducerTypes';
+import { Action, ActionKind, State } from './reducerTypes';
 
-export function reducer(state: boolean, action: Action) {
-  const { type } = action;
+export function reducer(state: State, action: Action) {
+  const { type, payload } = action;
 
   switch (type) {
     case ActionKind.UpdateMin:
-      console.log('updated');
-      state === true ? (state = false) : (state = true);
-      return state;
-
+      state.min === true ? (state.min = false) : (state.min = true);
+      return { ...state };
+    case ActionKind.UpdateUrl:
+      state.url = payload;
+      return { ...state };
     default:
       return state;
   }

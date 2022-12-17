@@ -6,7 +6,6 @@ import { GlobalContext } from 'contexts/Context';
 
 export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
   const { state } = useContext(GlobalContext);
-  const min = state;
   return (
     <div
       id={`card-${id}`}
@@ -35,7 +34,7 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
     >
       <h5 className={styles.card__title}>{name}</h5>
       <img
-        style={min ? { display: 'none' } : { display: 'block' }}
+        style={state.min ? { display: 'none' } : { display: 'block' }}
         className={`${styles.card__img}`}
         width={200}
         src={`${image ? URL.createObjectURL(image) : imageUrl}`}

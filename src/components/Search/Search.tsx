@@ -10,8 +10,6 @@ function Search(): JSX.Element {
 
   const { setUrl, setMin, state } = useContext(GlobalContext);
 
-  const min = state;
-
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     handleChange(query);
@@ -21,7 +19,6 @@ function Search(): JSX.Element {
     query.length > 3
       ? (setUrl(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
       : setSearchValid(false);
-    console.log(query);
   }
 
   return (
@@ -58,12 +55,14 @@ function Search(): JSX.Element {
               name="minimaze"
               type="checkbox"
               onChange={() => {
-                min ? setMin(false) : setMin(true);
+                state.min ? setMin(false) : setMin(true);
               }}
             />
             <div className="toggler-slider">
               <div
-                className={min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'}
+                className={
+                  state.min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'
+                }
               ></div>
             </div>
           </label>

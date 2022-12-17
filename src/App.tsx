@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
@@ -9,23 +9,23 @@ import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './pages/AddCardForm/AddCardForm';
 import { GlobalContext } from 'contexts/Context';
 import { reducer } from 'reducers/reducer';
-import { updateAction } from 'reducers/reducerTypes';
+import { ActionKind } from 'reducers/reducerTypes';
 
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
   const initialUrl = 'https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10';
   const initialMin = false;
+  const initialState = { url: initialUrl, min: initialMin };
 
-  const [state, dispatch] = useReducer(reducer, initialMin);
-
-  const [url, setUrl] = useState(initialUrl);
-  //const [min, setMin] = useState(initialMin);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function setMin() {
-    dispatch(updateAction);
+    dispatch({ type: ActionKind.UpdateMin, payload: '' });
   }
-
+  function setUrl(newUrl: string) {
+    dispatch({ type: ActionKind.UpdateUrl, payload: newUrl });
+  }
   function getCurrentTitle() {
     switch (path) {
       case '/about':
@@ -40,7 +40,7 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider value={{ url, setUrl, setMin, state }}>
+    <GlobalContext.Provider value={{ setUrl, setMin, state }}>
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">

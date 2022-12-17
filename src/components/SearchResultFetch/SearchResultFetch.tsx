@@ -13,12 +13,12 @@ function SearchResultFetch() {
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
 
-  const { url } = useContext(GlobalContext);
+  const { state } = useContext(GlobalContext);
 
   useEffect(() => {
     setIsPending(true);
     setNothing(false);
-    getCards(url)
+    getCards(state.url)
       .then((data) => {
         setCardsList(data);
         setIsPending(false);
@@ -29,7 +29,7 @@ function SearchResultFetch() {
         setIsPending(false);
         setError(err.message);
       });
-  }, [url]);
+  }, [state.url]);
 
   return (
     <section className={styles.card__section}>
