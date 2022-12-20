@@ -7,6 +7,7 @@ import { GlobalContext } from 'contexts/Context';
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
+  const [sort, setSort] = useState('AZ');
 
   const { setUrl, setMin, state } = useContext(GlobalContext);
 
@@ -67,11 +68,20 @@ function Search(): JSX.Element {
             </div>
           </label>
         </div>
+        <div className={styles.sorting__wrap}>
+          <p>Sorting:</p>
+          <select value={sort} onChange={(e) => setSort(e.target.value)}>
+            <option value="AZ">A-Z</option>
+            <option value="ZA">Z-A</option>
+            <option value="T">Types</option>
+            <option value="C">Colors</option>
+          </select>
+        </div>
       </div>
 
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch />
+      <SearchResultFetch sort={sort} />
     </section>
   );
 }

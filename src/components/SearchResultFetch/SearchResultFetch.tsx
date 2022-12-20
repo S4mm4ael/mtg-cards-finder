@@ -5,7 +5,7 @@ import { ICard } from 'components/Card/ICard';
 import { getCards } from 'utils/fetch';
 import { GlobalContext } from 'contexts/Context';
 
-function SearchResultFetch() {
+function SearchResultFetch(props: { sort: string }) {
   const [cardsList, setCardsList] = useState<{
     cards: ICard[];
   } | null>();
@@ -14,6 +14,19 @@ function SearchResultFetch() {
   const [nothing, setNothing] = useState(false);
 
   const { state } = useContext(GlobalContext);
+
+  function handleSorting(cardsList: { cards: ICard[] } | null | undefined, sort: string) {
+    const array = cardsList;
+    switch (sort) {
+      case 'ZA':
+        console.log(array?.cards.sort());
+
+        setCardsList(array);
+        break;
+      default:
+        return;
+    }
+  }
 
   useEffect(() => {
     setIsPending(true);
@@ -29,7 +42,8 @@ function SearchResultFetch() {
         setIsPending(false);
         setError(err.message);
       });
-  }, [state.url]);
+    handleSorting(cardsList, props.sort);
+  }, [state.url, props.sort]);
 
   return (
     <section className={styles.card__section}>

@@ -73,6 +73,22 @@ body{
   z-index: 10;
   top: 0;
 }
+.sorting__wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  
+}
+.sorting__wrap select {
+  cursor: pointer;
+  font-weight: 600;
+  border: 2px solid rgb(165, 165, 165);
+  border-radius: 5px;
+}
+.sorting__wrap option{
+  font-weight: 600;
+}
 @media (max-width: 768px) {
   .searchTerm {
     height: 40px;
