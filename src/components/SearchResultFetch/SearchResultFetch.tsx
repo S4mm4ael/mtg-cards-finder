@@ -37,7 +37,7 @@ function SearchResultFetch(props: { sort: string }) {
   useEffect(() => {
     setIsPending(true);
     setNothing(false);
-    getCards(state.url)
+    getCards(state.url, state.page)
       .then((data) => {
         setCardsList(data.cards);
         setIsPending(false);

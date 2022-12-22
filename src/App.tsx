@@ -14,9 +14,10 @@ import { ActionKind } from 'reducers/reducerTypes';
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
-  const initialUrl = 'https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10';
+  const initialUrl = 'https://api.magicthegathering.io/v1/cards';
   const initialMin = false;
-  const initialState = { url: initialUrl, min: initialMin };
+  const initialPage = 1;
+  const initialState = { url: initialUrl, min: initialMin, page: initialPage };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -25,6 +26,11 @@ function App() {
   }
   function setUrl(newUrl: string) {
     dispatch({ type: ActionKind.UpdateUrl, payload: newUrl });
+  }
+  function setPage(nextPage: boolean) {
+    nextPage
+      ? dispatch({ type: ActionKind.NextPage, payload: 'next' })
+      : dispatch({ type: ActionKind.PrevPage, payload: 'prev' });
   }
   function getCurrentTitle() {
     switch (path) {
@@ -40,7 +46,7 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider value={{ setUrl, setMin, state }}>
+    <GlobalContext.Provider value={{ setUrl, setMin, setPage, state }}>
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">

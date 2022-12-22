@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
+import Pagination from 'components/Pagination/Pagination';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
@@ -77,7 +78,7 @@ function Search(): JSX.Element {
           </select>
         </div>
       </div>
-
+      <Pagination />
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
       <SearchResultFetch sort={sort} />

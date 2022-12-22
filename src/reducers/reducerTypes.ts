@@ -1,10 +1,13 @@
 export enum ActionKind {
   UpdateUrl = 'UPDATE_URL',
   UpdateMin = 'UPDATE_MIN',
+  NextPage = 'NEXT_PAGE',
+  PrevPage = 'PREV_PAGE',
 }
 export type State = {
   url: string;
   min: boolean;
+  page: number;
 };
 
 export type Action = {
@@ -19,5 +22,15 @@ export const updateActionMin: Action = {
 
 export const updateActionUrl: Action = {
   type: ActionKind.UpdateUrl,
-  payload: 'https://api.magicthegathering.io/v1/cards?page=$2&pageSize=$10',
+  payload: '',
+};
+
+export const NextPage: Action = {
+  type: ActionKind.NextPage,
+  payload: 'next',
+};
+
+export const PrevPage: Action = {
+  type: ActionKind.PrevPage,
+  payload: 'prev',
 };
