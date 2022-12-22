@@ -10,6 +10,15 @@ export function reducer(state: State, action: Action) {
     case ActionKind.UpdateUrl:
       state.url = payload;
       return { ...state, payload };
+    case ActionKind.NextPage:
+      state.page = state.page + 1;
+      return { ...state, payload };
+    case ActionKind.PrevPage:
+      if (state.page != 1) {
+        state.page = state.page - 1;
+      }
+
+      return { ...state, payload };
     default:
       return state;
   }

@@ -9,9 +9,13 @@ function Pagination() {
   return (
     <>
       <div className={styles.pagination}>
-        <a href="#">❮</a>
+        <a href="#" onClick={() => setPage(false)}>
+          ❮
+        </a>
         <div>{state.page}</div>
-        <a href="#">❯</a>
+        <a href="#" onClick={() => setPage(true)}>
+          ❯
+        </a>
       </div>
     </>
   );
