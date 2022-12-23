@@ -32,6 +32,9 @@ function App() {
       ? dispatch({ type: ActionKind.NextPage, payload: 'next' })
       : dispatch({ type: ActionKind.PrevPage, payload: 'prev' });
   }
+  function setExactPage(page: number) {
+    dispatch({ type: ActionKind.ExactPage, payload: page });
+  }
   function getCurrentTitle() {
     switch (path) {
       case '/about':

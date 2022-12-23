@@ -3,6 +3,7 @@ export enum ActionKind {
   UpdateMin = 'UPDATE_MIN',
   NextPage = 'NEXT_PAGE',
   PrevPage = 'PREV_PAGE',
+  ExactPage = 'EXACT_PAGE',
 }
 export type State = {
   url: string;
@@ -12,7 +13,7 @@ export type State = {
 
 export type Action = {
   type: ActionKind;
-  payload: string;
+  payload: string | number;
 };
 
 export const updateActionMin: Action = {
@@ -33,4 +34,9 @@ export const NextPage: Action = {
 export const PrevPage: Action = {
   type: ActionKind.PrevPage,
   payload: 'prev',
+};
+
+export const ExactPage: Action = {
+  type: ActionKind.ExactPage,
+  payload: 1,
 };

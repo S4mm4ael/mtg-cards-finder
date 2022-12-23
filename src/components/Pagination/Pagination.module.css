@@ -44,6 +44,7 @@
   }
 }
 
-.none{
-  display: none;
+.shadowed{
+  cursor: pointer !important;
+  color: #00000096 
 }
