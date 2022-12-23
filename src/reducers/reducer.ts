@@ -19,7 +19,7 @@ export function reducer(state: State, action: Action) {
       }
       return { ...state, payload };
     case ActionKind.ExactPage:
-      if (state.page >= 1) {
+      if (state.page > 0) {
         state.page = +payload;
       }
       return { ...state, payload };

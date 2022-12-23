@@ -13,23 +13,19 @@ function SearchResultFetch(props: { sort: string }) {
 
   const { state } = useContext(GlobalContext);
 
-  function handleSorting(cardsList: ICard[] | null | undefined, sort: string) {
+  function handleSorting(sort: string) {
     const cardsToSort = cardsList!;
 
     switch (sort) {
       case 'ZA':
         setCardsList(cardsToSort.sort().reverse());
-
         break;
       case 'T':
         const sortableArrayT = [...cardsToSort].sort((a, b) => (a.types[0] > b.types[0] ? 1 : -1));
         setCardsList(sortableArrayT);
-
         break;
-
       default:
         setCardsList(cardsToSort);
-
         return;
     }
   }
@@ -51,7 +47,7 @@ function SearchResultFetch(props: { sort: string }) {
   }, [state.url, state.page]);
 
   useEffect(() => {
-    handleSorting(cardsList, props.sort);
+    handleSorting(props.sort);
   }, [props.sort]);
 
   return (

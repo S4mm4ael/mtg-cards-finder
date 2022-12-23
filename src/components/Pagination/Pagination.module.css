@@ -8,6 +8,7 @@
   width: 40px;
   font-weight: 600;
   cursor: default;
+  margin: 0 5px;
 }
 .pagination a {
   color: black;
@@ -22,9 +23,13 @@
   background-color: #4CAF50;
   color: white;
   border: 1px solid #4CAF50;
+  
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+  
+  border: 1px solid rgb(0, 0, 0);
+  background-color: #ddd;}
 
 .spinner {
   width: 64px;
@@ -48,3 +53,35 @@
   cursor: pointer !important;
   color: #00000096 
 }
+.form,
+.button{
+    font-size: 1rem;
+  font-weight: 600;
+  
+}
+.form{
+  display: flex;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+.text__input{
+  max-width: 100px;
+  margin: 0 20px;
+  height: 35px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.button{
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: .3s;
+  height: 40px;
+  }
+  .button:hover{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #ddd;
+  }

@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider value={{ setUrl, setMin, setPage, state }}>
+    <GlobalContext.Provider value={{ setUrl, setMin, setPage, setExactPage, state }}>
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">
