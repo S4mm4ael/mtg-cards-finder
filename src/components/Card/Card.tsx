@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
@@ -6,6 +6,7 @@ import { GlobalContext } from 'contexts/Context';
 
 export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
   const { state } = useContext(GlobalContext);
+  const [isLoaded, setIsLoaded] = useState(false);
   return (
     <div
       id={`card-${id}`}
@@ -39,6 +40,7 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
         width={200}
         src={`${image ? URL.createObjectURL(image) : imageUrl}`}
         alt={name}
+        onLoad={() => console.log('loaded')}
       />
       <span className={styles.card__header}>Colors:</span>
       <div className={styles.color__wrapper}>

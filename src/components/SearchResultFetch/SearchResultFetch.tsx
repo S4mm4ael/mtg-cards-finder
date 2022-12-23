@@ -48,7 +48,7 @@ function SearchResultFetch(props: { sort: string }) {
         setIsPending(false);
         setError(err.message);
       });
-  }, [state.url]);
+  }, [state.url, state.page]);
 
   useEffect(() => {
     handleSorting(cardsList, props.sort);
