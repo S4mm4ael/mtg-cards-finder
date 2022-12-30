@@ -4,11 +4,13 @@ export enum ActionKind {
   NextPage = 'NEXT_PAGE',
   PrevPage = 'PREV_PAGE',
   ExactPage = 'EXACT_PAGE',
+  Sort = 'SORT',
 }
 export type State = {
   url: string;
   min: boolean;
   page: number;
+  sort: string;
 };
 
 export type Action = {
@@ -39,4 +41,9 @@ export const PrevPage: Action = {
 export const ExactPage: Action = {
   type: ActionKind.ExactPage,
   payload: 1,
+};
+
+export const Sort: Action = {
+  type: ActionKind.Sort,
+  payload: '',
 };

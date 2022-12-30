@@ -100,3 +100,8 @@ height: 56px;
     width: 80%;
   }
 }
+.selectors__wrap{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

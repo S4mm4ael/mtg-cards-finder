@@ -23,6 +23,10 @@ export function reducer(state: State, action: Action) {
         state.page = +payload;
       }
       return { ...state, payload };
+    case ActionKind.Sort:
+      state.sort = payload.toString();
+      console.log(state.sort);
+      return { ...state, payload };
     default:
       return state;
   }

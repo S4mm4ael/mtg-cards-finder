@@ -5,7 +5,7 @@ import { ICard } from 'components/Card/ICard';
 import { getCards } from 'utils/fetch';
 import { GlobalContext } from 'contexts/Context';
 
-function SearchResultFetch(props: { sort: string }) {
+function SearchResultFetch() {
   const [cardsList, setCardsList] = useState<ICard[] | null | undefined>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -13,19 +13,22 @@ function SearchResultFetch(props: { sort: string }) {
 
   const { state } = useContext(GlobalContext);
 
-  function handleSorting(sort: string) {
-    const cardsToSort = cardsList!;
+  const cardSort = (cards: ICard[] | null | undefined, isReverse: boolean) => {
+    const newCards =
+      cards &&
+      cards.sort((a: { name: string }, b: { name: string }) =>
+        isReverse ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)
+      );
+    return newCards;
+  };
 
+  function handleSorting(sort: string) {
     switch (sort) {
       case 'ZA':
-        setCardsList(cardsToSort.sort().reverse());
-        break;
-      case 'T':
-        const sortableArrayT = [...cardsToSort].sort((a, b) => (a.types[0] > b.types[0] ? 1 : -1));
-        setCardsList(sortableArrayT);
+        setCardsList(cardSort(cardsList, false));
         break;
       default:
-        setCardsList(cardsToSort);
+        setCardsList(cardSort(cardsList, true));
         return;
     }
   }
@@ -47,8 +50,8 @@ function SearchResultFetch(props: { sort: string }) {
   }, [state.url, state.page]);
 
   useEffect(() => {
-    handleSorting(props.sort);
-  }, [props.sort]);
+    handleSorting(state.sort);
+  }, [state.sort, handleSorting]);
 
   return (
     <section className={styles.card__section}>

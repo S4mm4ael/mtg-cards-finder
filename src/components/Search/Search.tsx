@@ -8,9 +8,8 @@ import Pagination from 'components/Pagination/Pagination';
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
-  const [sort, setSort] = useState('');
 
-  const { setUrl, setMin, state } = useContext(GlobalContext);
+  const { setUrl, setMin, setSort, state } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -69,19 +68,39 @@ function Search(): JSX.Element {
             </div>
           </label>
         </div>
-        <div className={styles.sorting__wrap}>
-          <p>Sorting:</p>
-          <select value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="AZ">A-Z</option>
-            <option value="ZA">Z-A</option>
-            <option value="T">Types</option>
-          </select>
+        <div className={styles.selectors__wrap}>
+          <div className={styles.sorting__wrap}>
+            <p>Sorting:</p>
+            <select
+              value={state.sort}
+              onChange={(e) => {
+                setSort(e.target.value);
+              }}
+            >
+              <option value="AZ">A-Z</option>
+              <option value="ZA">Z-A</option>
+            </select>
+          </div>
+          <div className={styles.sorting__wrap}>
+            <p>Cards per page:</p>
+            <select
+              value={state.sort}
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
         </div>
       </div>
       <Pagination />
       {!searchValid && <div style={{ color: 'red' }}>Please, enter at least 4 symbols</div>}
 
-      <SearchResultFetch sort={sort} />
+      <SearchResultFetch />
     </section>
   );
 }
