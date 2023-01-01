@@ -17,7 +17,13 @@ function App() {
   const initialUrl = 'https://api.magicthegathering.io/v1/cards';
   const initialMin = false;
   const initialPage = 1;
-  const initialState = { url: initialUrl, min: initialMin, page: initialPage, sort: '' };
+  const initialState = {
+    url: initialUrl,
+    min: initialMin,
+    page: initialPage,
+    sort: 'A-Z',
+    count: 10,
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -38,6 +44,9 @@ function App() {
   function setSort(sort: string) {
     dispatch({ type: ActionKind.Sort, payload: sort });
   }
+  function setCount(count: number) {
+    dispatch({ type: ActionKind.Count, payload: count });
+  }
   function getCurrentTitle() {
     switch (path) {
       case '/about':
@@ -52,7 +61,9 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider value={{ setUrl, setMin, setPage, setExactPage, setSort, state }}>
+    <GlobalContext.Provider
+      value={{ setUrl, setMin, setPage, setExactPage, setSort, setCount, state }}
+    >
       <div className={stylesApp.App}>
         <div className={styles.header}>
           <Link id="main-page" to="/">

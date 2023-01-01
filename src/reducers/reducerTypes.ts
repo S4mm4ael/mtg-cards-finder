@@ -5,12 +5,14 @@ export enum ActionKind {
   PrevPage = 'PREV_PAGE',
   ExactPage = 'EXACT_PAGE',
   Sort = 'SORT',
+  Count = 'COUNT',
 }
 export type State = {
   url: string;
   min: boolean;
   page: number;
   sort: string;
+  count: number;
 };
 
 export type Action = {
@@ -45,5 +47,10 @@ export const ExactPage: Action = {
 
 export const Sort: Action = {
   type: ActionKind.Sort,
-  payload: '',
+  payload: 'A-Z',
+};
+
+export const Count: Action = {
+  type: ActionKind.Count,
+  payload: 100,
 };

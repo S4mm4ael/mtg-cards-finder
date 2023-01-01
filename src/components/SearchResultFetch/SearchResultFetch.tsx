@@ -24,7 +24,7 @@ function SearchResultFetch() {
 
   function handleSorting(sort: string) {
     switch (sort) {
-      case 'ZA':
+      case 'Z-A':
         setCardsList(cardSort(cardsList, false));
         break;
       default:
@@ -51,7 +51,7 @@ function SearchResultFetch() {
 
   useEffect(() => {
     handleSorting(state.sort);
-  }, [state.sort, handleSorting]);
+  }, [state.sort, handleSorting, state.page]);
 
   return (
     <section className={styles.card__section}>
@@ -65,7 +65,7 @@ function SearchResultFetch() {
       <div className={styles.render__result}>
         {cardsList &&
           cardsList.map((item, index) => {
-            if (item.imageUrl) {
+            if (item.imageUrl && index <= state.count) {
               return (
                 <Card
                   key={index}

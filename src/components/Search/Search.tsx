@@ -9,7 +9,7 @@ function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  const { setUrl, setMin, setSort, state } = useContext(GlobalContext);
+  const { setUrl, setMin, setSort, setCount, state } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -77,16 +77,16 @@ function Search(): JSX.Element {
                 setSort(e.target.value);
               }}
             >
-              <option value="AZ">A-Z</option>
-              <option value="ZA">Z-A</option>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
             </select>
           </div>
           <div className={styles.sorting__wrap}>
             <p>Cards per page:</p>
             <select
-              value={state.sort}
+              value={state.count}
               onChange={(e) => {
-                console.log(e.target.value);
+                setCount(+e.target.value);
               }}
             >
               <option value={10}>10</option>
