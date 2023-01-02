@@ -1,0 +1,106 @@
+
+.card__section,
+.render__result {
+display: flex;
+height: 100vh;
+flex-direction: column;
+flex-wrap: nowrap;
+gap: 20px;
+align-items: center;
+justify-content: center;
+}
+.render__result{
+flex-direction: row;
+}
+
+.card__title{
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  pointer-events: none;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(220, 210, 230, 0.5);
+  border-radius: 20px;
+  box-shadow: 10px 5px 5px rgb(119 119 119);
+  align-items: center;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.card__img{
+  border-radius: 10px;
+  pointer-events: none;
+}
+.card:hover,
+.card__img:hover {
+  transform: scale(1.1);
+}
+
+  .card__header{
+    font-size: 0.8rem;
+    opacity: 0.5;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  b {
+    font-size: 0.8rem;
+    pointer-events: none;
+  }
+
+.fa_check{
+  color: chartreuse;
+}
+.color__wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  pointer-events: none;
+}
+.card__color{
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  border: 1px black solid ;
+  pointer-events: none;
+}
+.color__wrapper{
+  display: flex;
+  flex-direction: row;
+  pointer-events: none;
+}
+
+.wrapper_centered{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  z-index: 10;
+  top: 0;
+}
+
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000000 transparent #000000 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+.card__details{
+  font-size: 1rem;
+  color:#000000;
+}

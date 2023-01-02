@@ -42,7 +42,7 @@ export function Card(props: ICard): JSX.Element {
       )}
       <img
         style={state.min ? { display: 'none' } : { display: 'block' }}
-        className={`${styles.card__img}`}
+        className={styles.card__img}
         width={200}
         src={`${props.image ? URL.createObjectURL(props.image) : props.imageUrl}`}
         alt={props.name}
@@ -87,7 +87,7 @@ export function Card(props: ICard): JSX.Element {
         onClick={() => setCardId(props.id)}
         to={`/card/${props.id}`}
       >
-        Details
+        More
       </Link>
     </div>
   );
