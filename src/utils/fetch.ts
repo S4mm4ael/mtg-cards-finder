@@ -13,3 +13,19 @@ export async function getCards(url: string, page: number | undefined) {
     console.log(error);
   }
 }
+
+export async function getCard(id: string) {
+  try {
+    const response = await fetch(`https://api.magicthegathering.io/v1/cards/${id}`);
+
+    if (response.status === 200) {
+      const card = await response.json();
+      return card;
+    }
+    if (response.status !== 200) {
+      throw new Error(`Something went wrong... Error code: ${response.status}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

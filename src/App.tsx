@@ -10,6 +10,7 @@ import AddCardForm from './pages/AddCardForm/AddCardForm';
 import { GlobalContext } from 'contexts/Context';
 import { reducer } from 'reducers/reducer';
 import { ActionKind } from 'reducers/reducerTypes';
+import CardDetails from 'pages/CardDetails/CardDetails';
 
 function App() {
   const location = useLocation();
@@ -76,6 +77,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/addcard" element={<AddCardForm />} />
+          <Route path="/card/:id" element={<CardDetails />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>

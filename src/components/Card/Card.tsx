@@ -3,6 +3,7 @@ import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
 import { GlobalContext } from 'contexts/Context';
+import { Link } from 'react-router-dom';
 
 export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
   const { state } = useContext(GlobalContext);
@@ -81,6 +82,9 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
       {types?.map((type: string) => (
         <b key={type}>{type}</b>
       ))}
+      <Link className={styles.card__details} to={`/card/${id}`}>
+        More details
+      </Link>
     </div>
   );
 }

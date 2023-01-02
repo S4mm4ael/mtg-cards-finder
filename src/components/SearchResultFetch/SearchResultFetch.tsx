@@ -47,6 +47,7 @@ function SearchResultFetch() {
         setIsPending(false);
         setError(err.message);
       });
+    handleSorting(state.sort);
   }, [state.url, state.page]);
 
   useEffect(() => {
