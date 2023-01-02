@@ -8,5 +8,6 @@ export const GlobalContext = createContext({
   setSort: (c: string) => {},
   setCount: (c: number) => {},
   setExactPage: (c: number) => {},
-  state: { url: '', min: false, page: 1, sort: '', count: 100 },
+  setCardId: (c: string) => {},
+  state: { url: '', min: false, page: 1, sort: '', count: 100, id: '' },
 });

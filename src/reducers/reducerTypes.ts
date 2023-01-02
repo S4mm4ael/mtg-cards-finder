@@ -6,6 +6,7 @@ export enum ActionKind {
   ExactPage = 'EXACT_PAGE',
   Sort = 'SORT',
   Count = 'COUNT',
+  CardId = 'CARD_ID',
 }
 export type State = {
   url: string;
@@ -13,6 +14,7 @@ export type State = {
   page: number;
   sort: string;
   count: number;
+  id: string;
 };
 
 export type Action = {
@@ -53,4 +55,9 @@ export const Sort: Action = {
 export const Count: Action = {
   type: ActionKind.Count,
   payload: 100,
+};
+
+export const CardId: Action = {
+  type: ActionKind.Count,
+  payload: '',
 };

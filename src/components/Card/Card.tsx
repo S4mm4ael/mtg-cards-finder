@@ -5,14 +5,14 @@ import { ICard } from './ICard';
 import { GlobalContext } from 'contexts/Context';
 import { Link } from 'react-router-dom';
 
-export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.Element {
-  const { state } = useContext(GlobalContext);
+export function Card(props: ICard): JSX.Element {
+  const { setCardId, state } = useContext(GlobalContext);
   const [isLoaded, setIsLoaded] = useState(true);
   return (
     <div
-      id={`card-${id}`}
+      id={`card-${props.id}`}
       style={{
-        background: `linear-gradient(180deg, #ffffff 0%, ${colors?.map((color: string) => {
+        background: `linear-gradient(180deg, #ffffff 0%, ${props.colors?.map((color: string) => {
           switch (color) {
             case 'W':
               color = 'white';
@@ -34,7 +34,7 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
       }}
       className={styles.card}
     >
-      <h5 className={styles.card__title}>{name}</h5>
+      <h5 className={styles.card__title}>{props.name}</h5>
       {isLoaded && (
         <div className={styles.loader__container}>
           <div className={styles.spinner}></div>
@@ -44,14 +44,14 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
         style={state.min ? { display: 'none' } : { display: 'block' }}
         className={`${styles.card__img}`}
         width={200}
-        src={`${image ? URL.createObjectURL(image) : imageUrl}`}
-        alt={name}
+        src={`${props.image ? URL.createObjectURL(props.image) : props.imageUrl}`}
+        alt={props.name}
         onLoad={() => setIsLoaded(false)}
       />
 
       <span className={styles.card__header}>Colors:</span>
       <div className={styles.color__wrapper}>
-        {colors?.map((color: string) => {
+        {props.colors?.map((color: string) => {
           switch (color) {
             case 'W':
               color = 'white';
@@ -79,10 +79,14 @@ export function Card({ id, name, types, colors, imageUrl, image }: ICard): JSX.E
       </div>
 
       <span className={styles.card__header}>Type:</span>
-      {types?.map((type: string) => (
+      {props.types?.map((type: string) => (
         <b key={type}>{type}</b>
       ))}
-      <Link className={styles.card__details} to={`/card/${id}`}>
+      <Link
+        className={styles.card__details}
+        onClick={() => setCardId(props.id)}
+        to={`/card/${props.id}`}
+      >
         More details
       </Link>
     </div>

@@ -24,6 +24,7 @@ function App() {
     page: initialPage,
     sort: 'A-Z',
     count: 10,
+    id: '',
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -48,6 +49,9 @@ function App() {
   function setCount(count: number) {
     dispatch({ type: ActionKind.Count, payload: count });
   }
+  function setCardId(id: string) {
+    dispatch({ type: ActionKind.CardId, payload: id });
+  }
   function getCurrentTitle() {
     switch (path) {
       case '/about':
@@ -63,7 +67,7 @@ function App() {
 
   return (
     <GlobalContext.Provider
-      value={{ setUrl, setMin, setPage, setExactPage, setSort, setCount, state }}
+      value={{ setUrl, setMin, setPage, setExactPage, setSort, setCount, setCardId, state }}
     >
       <div className={stylesApp.App}>
         <div className={styles.header}>
@@ -77,7 +81,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/addcard" element={<AddCardForm />} />
-          <Route path="/card/:id" element={<CardDetails />} />
+          <Route path="/card/:id" element={<CardDetails id={state.id} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
