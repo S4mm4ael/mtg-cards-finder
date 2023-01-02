@@ -87,7 +87,7 @@ export function Card(props: ICard): JSX.Element {
         onClick={() => setCardId(props.id)}
         to={`/card/${props.id}`}
       >
-        More details
+        Details
       </Link>
     </div>
   );
