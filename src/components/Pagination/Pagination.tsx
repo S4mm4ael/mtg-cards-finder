@@ -18,13 +18,9 @@ function Pagination() {
         <a href="#" onClick={() => setPage(false)}>
           ❮
         </a>
-        <div className={styles.shadowed} onClick={() => setPage(false)}>
-          {state.page > 1 ? state.page - 1 : <p></p>}
-        </div>
+        <div onClick={() => setPage(false)}>{state.page > 1 ? state.page - 1 : <p></p>}</div>
         <div>{state.page}</div>
-        <div className={styles.shadowed} onClick={() => setPage(true)}>
-          {state.page + 1}
-        </div>
+        <div onClick={() => setPage(true)}>{state.page + 1}</div>
         <a href="#" onClick={() => setPage(true)}>
           ❯
         </a>
