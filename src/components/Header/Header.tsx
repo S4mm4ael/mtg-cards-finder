@@ -12,7 +12,7 @@ function Header(): JSX.Element {
           </Link>
         </li>
         <li className={styles.header__item}>
-          <Link id="main-page" to="/">
+          <Link id="main-page" to="/cards">
             Cards
           </Link>
         </li>

@@ -11,6 +11,7 @@ import { GlobalContext } from 'contexts/Context';
 import { reducer } from 'reducers/reducer';
 import { ActionKind } from 'reducers/reducerTypes';
 import CardDetails from 'pages/CardDetails/CardDetails';
+import Home from 'pages/Home/Home';
 
 function App() {
   const location = useLocation();
@@ -62,10 +63,12 @@ function App() {
   }
   function getCurrentTitle() {
     switch (path) {
+      case '/home':
+        return 'Home';
       case '/about':
         return 'About';
-      case '/':
-        return 'Main';
+      case '/cards':
+        return 'Cards';
       case '/addcard':
         return 'Create';
       default:
@@ -97,7 +100,8 @@ function App() {
           <Header />
         </div>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cards" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/addcard" element={<AddCardForm />} />
           <Route path="/card/:id" element={<CardDetails id={state.id} />} />

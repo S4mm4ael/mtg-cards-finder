@@ -1,0 +1,19 @@
+.about__section{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+ 
+}
+.github{
+ cursor: pointer;
+  transition: .3s;
+}
+.github:hover{
+  transform: scale(1.1);
+}
+.api__link{
+  color: black;
+}
