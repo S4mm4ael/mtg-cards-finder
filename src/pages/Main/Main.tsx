@@ -3,9 +3,9 @@ import Search from '../../components/Search/Search';
 
 function Main(): JSX.Element {
   return (
-    <main>
+    <section className="section">
       <Search />
-    </main>
+    </section>
   );
 }
 export default Main;

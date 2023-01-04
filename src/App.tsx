@@ -63,8 +63,8 @@ function App() {
   }
   function getCurrentTitle() {
     switch (path) {
-      case '/home':
-        return 'Home';
+      case '/':
+        return 'MTG Card Finder';
       case '/about':
         return 'About';
       case '/cards':
