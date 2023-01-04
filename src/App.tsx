@@ -26,6 +26,7 @@ function App() {
     count: 10,
     id: '',
     isSearching: false,
+    query: '',
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -55,7 +56,9 @@ function App() {
   }
   function setIsSearching(isSearching: boolean) {
     dispatch({ type: ActionKind.IsSearching, payload: isSearching });
-    console.log(state.isSearching);
+  }
+  function setSearchingQuery(query: string) {
+    dispatch({ type: ActionKind.SetQuery, payload: query });
   }
   function getCurrentTitle() {
     switch (path) {
@@ -81,6 +84,7 @@ function App() {
         setCount,
         setCardId,
         setIsSearching,
+        setSearchingQuery,
         state,
       }}
     >

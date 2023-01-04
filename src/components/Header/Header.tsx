@@ -6,22 +6,26 @@ function Header(): JSX.Element {
   return (
     <div id="navigation" className="app-header__navigation">
       <ul className={styles.header__list}>
-        <li className="header-list__item">
+        <li className={styles.header__item}>
           <Link id="main-page" to="/">
-            Main page
+            Home
           </Link>
         </li>
-        <li className="header-list__item">
+        <li className={styles.header__item}>
+          <Link id="main-page" to="/">
+            Cards
+          </Link>
+        </li>
+        <li className={styles.header__item}>
           <Link id="add-page" to="/addcard">
             Create
           </Link>
         </li>
-        <li className="header-list__item">
+        <li className={styles.header__item}>
           <Link id="about-page" to="/about">
             About
           </Link>
         </li>
-        <li className="header-list__item"></li>
       </ul>
     </div>
   );

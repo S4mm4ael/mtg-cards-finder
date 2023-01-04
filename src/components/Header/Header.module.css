@@ -30,6 +30,9 @@
   height: 70px;
   
 }
+.header__item{
+  font-size: 1.2rem;
+}
 @media (max-width: 768px) {
   .header{
     flex-direction: column;

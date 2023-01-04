@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
-import { getCards } from 'utils/fetch';
+import { getCards, getSearchedCard } from 'utils/fetch';
 import { GlobalContext } from 'contexts/Context';
 
 function SearchResultFetch() {
@@ -33,10 +33,17 @@ function SearchResultFetch() {
     }
   }
 
+  function getData(isSearching: boolean) {
+    if (isSearching) {
+      return getSearchedCard(state.query);
+    }
+    return getCards(state.page);
+  }
+
   useEffect(() => {
     setIsPending(true);
     setNothing(false);
-    getCards(state.url, state.page)
+    getData(state.isSearching)
       .then((data) => {
         setCardsList(data.cards);
         setIsPending(false);
@@ -48,7 +55,7 @@ function SearchResultFetch() {
         setError(err.message);
       });
     handleSorting(state.sort);
-  }, [state.url, state.page]);
+  }, [state.page, state.isSearching, state.query]);
 
   useEffect(() => {
     handleSorting(state.sort);

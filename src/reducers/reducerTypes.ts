@@ -8,6 +8,7 @@ export enum ActionKind {
   Count = 'COUNT',
   CardId = 'CARD_ID',
   IsSearching = 'IS_SEARCHING',
+  SetQuery = 'SET_QUERY',
 }
 export type State = {
   url: string;
@@ -17,6 +18,7 @@ export type State = {
   count: number;
   id: string;
   isSearching: boolean;
+  query: string;
 };
 
 export type Action = {
@@ -60,11 +62,15 @@ export const Count: Action = {
 };
 
 export const CardId: Action = {
-  type: ActionKind.Count,
+  type: ActionKind.CardId,
   payload: '',
 };
 
 export const IsSearching: Action = {
   type: ActionKind.IsSearching,
   payload: false,
+};
+export const SetQuery: Action = {
+  type: ActionKind.SetQuery,
+  payload: '',
 };

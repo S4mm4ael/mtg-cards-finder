@@ -10,7 +10,8 @@ function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  const { setUrl, setMin, setSort, setCount, setIsSearching, state } = useContext(GlobalContext);
+  const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
+    useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -19,7 +20,7 @@ function Search(): JSX.Element {
   function handleChange(query: string): void {
     setIsSearching(true);
     setLocalStorage(query);
-    query.length > 3 ? (getSearchedCard(query), setSearchValid(true)) : setSearchValid(false);
+    query.length > 3 ? (setSearchingQuery(query), setSearchValid(true)) : setSearchValid(false);
   }
 
   return (

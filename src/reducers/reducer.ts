@@ -12,6 +12,7 @@ export function reducer(state: State, action: Action) {
       return { ...state, payload };
     case ActionKind.NextPage:
       state.page = state.page + 1;
+
       return { ...state, payload };
     case ActionKind.PrevPage:
       if (state.page != 1) {
@@ -22,7 +23,6 @@ export function reducer(state: State, action: Action) {
       if (state.page > 0) {
         state.page = +payload;
       }
-
       return { ...state, payload };
     case ActionKind.Sort:
       state.sort = payload.toString();
@@ -35,8 +35,9 @@ export function reducer(state: State, action: Action) {
       return { ...state, payload };
     case ActionKind.IsSearching:
       state.isSearching = !!payload;
-      console.log(payload);
-
+      return { ...state, payload };
+    case ActionKind.SetQuery:
+      state.query = payload.toString();
       return { ...state, payload };
     default:
       return state;
