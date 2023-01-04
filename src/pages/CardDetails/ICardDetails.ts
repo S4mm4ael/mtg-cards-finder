@@ -13,7 +13,7 @@ export interface ICardDetails {
   artist: string;
   number: string;
   printings: string[];
-  legalities: { format: string; legality: string }[]
+  legalities: { format: string; legality: string }[];
 }
 
-export default ICardDetails
+export default ICardDetails;

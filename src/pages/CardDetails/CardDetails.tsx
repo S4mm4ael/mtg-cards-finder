@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getCard } from '../../utils/fetch';
 import ICardDetails from './ICardDetails';
 import styles from './CardDetails.module.css';
-import { spawn } from 'child_process';
+import { Link } from 'react-router-dom';
 
 function CardDetails(props: { id: string }) {
   const [card, setCard] = useState<ICardDetails | null | undefined>();
@@ -28,7 +28,6 @@ function CardDetails(props: { id: string }) {
         setIsPending(false);
         setError(err.message);
       });
-    console.log(card);
   }, [state.id]);
 
   return (
@@ -57,6 +56,9 @@ function CardDetails(props: { id: string }) {
       }}
       className={styles.card__section}
     >
+      <Link className={styles.card__details} to={`/`}>
+        Back
+      </Link>
       {error && <div>{error}</div>}
       {isPending && (
         <div className={styles.loader__container}>
@@ -79,7 +81,6 @@ function CardDetails(props: { id: string }) {
               />
             </div>
             <div className={styles.wrapper__right}>
-              <h3>Card attributes</h3>
               <ul className={styles.attributes__list}>
                 <li>
                   <span className={styles.list__titles}>Type: </span>
@@ -133,7 +134,7 @@ function CardDetails(props: { id: string }) {
                 </li>
                 <li>
                   <span className={styles.list__titles}>Flavor: </span>
-                  {card?.flavor}
+                  <span className={styles.list__flavor}>{card?.flavor}</span>
                 </li>
                 <li>
                   <span className={styles.list__titles}>Artist: </span>
@@ -145,9 +146,30 @@ function CardDetails(props: { id: string }) {
                 </li>
                 <li>
                   <span className={styles.list__titles}>Printings: </span>
-                  {card?.printings.map((item, index) => {
-                    return <b key={index}>{item} </b>;
-                  })}
+                  <div className={styles.list__printings}>
+                    {card?.printings.map((item, index) => {
+                      return (
+                        <b className={styles.list__print} key={index}>
+                          {item}{' '}
+                        </b>
+                      );
+                    })}
+                  </div>
+                </li>
+                <li>
+                  <span className={styles.list__titles}>Legality: </span>
+                  <div className={styles.list__legality}>
+                    {card?.legalities.map((item, index) => {
+                      return (
+                        <div className={styles.list__legal} key={index}>
+                          <div>
+                            <span className={styles.list__format}>{item.format}</span> {'  '}
+                            <span className={styles.list__islegal}>{item.legality}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </li>
               </ul>
             </div>
