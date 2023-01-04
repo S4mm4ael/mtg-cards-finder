@@ -22,7 +22,24 @@
 .home__text{
   font-size: 1rem;
   text-align: center;
+  color: rgb(255, 255, 255);
+  cursor:default;
 }
 .home__title{
   text-align: center;
+  cursor:default;
+}
+.home__image{
+  width: auto;
+
+}
+.home__button{
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 10px;
+  transition: .3s;
+  box-shadow: 5px 5px 5px rgb(57, 57, 57);
+}
+.home__button:hover{
+  transform: scale(1.1);
 }
