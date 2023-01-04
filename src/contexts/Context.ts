@@ -9,5 +9,6 @@ export const GlobalContext = createContext({
   setCount: (c: number) => {},
   setExactPage: (c: number) => {},
   setCardId: (c: string) => {},
-  state: { url: '', min: false, page: 1, sort: '', count: 100, id: '' },
+  setIsSearching: (c: boolean) => {},
+  state: { url: '', min: false, page: 1, sort: '', count: 100, id: '', isSearching: false },
 });

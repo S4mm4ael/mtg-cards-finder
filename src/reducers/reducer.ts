@@ -33,6 +33,11 @@ export function reducer(state: State, action: Action) {
     case ActionKind.CardId:
       state.id = payload.toString();
       return { ...state, payload };
+    case ActionKind.IsSearching:
+      state.isSearching = !!payload;
+      console.log(payload);
+
+      return { ...state, payload };
     default:
       return state;
   }

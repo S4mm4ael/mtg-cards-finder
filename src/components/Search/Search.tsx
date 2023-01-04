@@ -3,24 +3,23 @@ import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
+import { getSearchedCard } from 'utils/fetch';
 import Pagination from 'components/Pagination/Pagination';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  const { setUrl, setMin, setSort, setCount, state } = useContext(GlobalContext);
+  const { setUrl, setMin, setSort, setCount, setIsSearching, state } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     handleChange(query);
-    console.log(state.url);
   }
   function handleChange(query: string): void {
+    setIsSearching(true);
     setLocalStorage(query);
-    query.length > 3
-      ? (setUrl(`https://api.magicthegathering.io/v1/cards?name=${query}`), setSearchValid(true))
-      : setSearchValid(false);
+    query.length > 3 ? (getSearchedCard(query), setSearchValid(true)) : setSearchValid(false);
   }
 
   return (

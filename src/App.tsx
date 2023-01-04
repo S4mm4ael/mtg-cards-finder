@@ -25,6 +25,7 @@ function App() {
     sort: 'A-Z',
     count: 10,
     id: '',
+    isSearching: false,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -52,6 +53,10 @@ function App() {
   function setCardId(id: string) {
     dispatch({ type: ActionKind.CardId, payload: id });
   }
+  function setIsSearching(isSearching: boolean) {
+    dispatch({ type: ActionKind.IsSearching, payload: isSearching });
+    console.log(state.isSearching);
+  }
   function getCurrentTitle() {
     switch (path) {
       case '/about':
@@ -67,7 +72,17 @@ function App() {
 
   return (
     <GlobalContext.Provider
-      value={{ setUrl, setMin, setPage, setExactPage, setSort, setCount, setCardId, state }}
+      value={{
+        setUrl,
+        setMin,
+        setPage,
+        setExactPage,
+        setSort,
+        setCount,
+        setCardId,
+        setIsSearching,
+        state,
+      }}
     >
       <div className={stylesApp.App}>
         <div className={styles.header}>

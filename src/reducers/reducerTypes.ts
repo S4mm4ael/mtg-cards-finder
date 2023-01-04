@@ -7,6 +7,7 @@ export enum ActionKind {
   Sort = 'SORT',
   Count = 'COUNT',
   CardId = 'CARD_ID',
+  IsSearching = 'IS_SEARCHING',
 }
 export type State = {
   url: string;
@@ -15,11 +16,12 @@ export type State = {
   sort: string;
   count: number;
   id: string;
+  isSearching: boolean;
 };
 
 export type Action = {
   type: ActionKind;
-  payload: string | number;
+  payload: string | number | boolean;
 };
 
 export const updateActionMin: Action = {
@@ -60,4 +62,9 @@ export const Count: Action = {
 export const CardId: Action = {
   type: ActionKind.Count,
   payload: '',
+};
+
+export const IsSearching: Action = {
+  type: ActionKind.IsSearching,
+  payload: false,
 };

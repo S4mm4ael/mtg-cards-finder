@@ -4,7 +4,6 @@ export async function getCards(url: string, page: number | undefined) {
 
     if (response.status === 200) {
       const cards = await response.json();
-      console.log(cards);
 
       return cards;
     }
@@ -15,13 +14,13 @@ export async function getCards(url: string, page: number | undefined) {
     console.log(error);
   }
 }
-export async function getSearchedCard(url: string, name: string) {
+export async function getSearchedCard(name: string) {
+  const url = 'https://api.magicthegathering.io/v1/cards';
   try {
     const response = await fetch(`${url}?name=${name}`);
 
     if (response.status === 200) {
       const card = await response.json();
-      console.log(card);
 
       return card;
     }
