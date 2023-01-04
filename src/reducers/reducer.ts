@@ -22,6 +22,7 @@ export function reducer(state: State, action: Action) {
       if (state.page > 0) {
         state.page = +payload;
       }
+
       return { ...state, payload };
     case ActionKind.Sort:
       state.sort = payload.toString();

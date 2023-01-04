@@ -14,6 +14,7 @@ function Search(): JSX.Element {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     handleChange(query);
+    console.log(state.url);
   }
   function handleChange(query: string): void {
     setLocalStorage(query);

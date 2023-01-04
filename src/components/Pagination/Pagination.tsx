@@ -5,8 +5,7 @@ import { getCards } from 'utils/fetch';
 import { GlobalContext } from 'contexts/Context';
 
 function Pagination() {
-  const { setPage, setExactPage, state } = useContext(GlobalContext);
-  const [number, setNumber] = useState<number>(1);
+  const { setPage, state } = useContext(GlobalContext);
 
   useEffect(() => {
     getCards(state.url, state.page);
@@ -25,18 +24,6 @@ function Pagination() {
           ❯
         </a>
       </div>
-      <form className={styles.form} onSubmit={() => setExactPage(number)}>
-        <label> Enter page </label>
-        <input
-          className={styles.text__input}
-          type="number"
-          value={number}
-          min="1"
-          max="450"
-          onChange={(e) => setNumber(+e.target.value)}
-        />
-        <input className={styles.button} type="submit" value={'Send'} />
-      </form>
     </>
   );
 }

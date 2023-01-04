@@ -12,6 +12,13 @@ function About(): JSX.Element {
           <img src={github} alt="react" height={200} />
         </a>
       </p>
+      <p>
+        {' '}
+        Project works using{' '}
+        <a className={styles.api__link} href="https://magicthegathering.io/">
+          MTG API
+        </a>
+      </p>
     </section>
   );
 }
