@@ -1,2 +1,3 @@
-# s4mm4ael-REACT2022Q3
-Private repository for @s4mm4ael
+# MTG Card Finder
+
+Powered by React Redux and works using [MTG API](https://magicthegathering.io/)
