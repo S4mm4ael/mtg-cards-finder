@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function About(): JSX.Element {
   return (
     <section id="about-section" className={styles.about__section}>
+      <img className={styles.logo} src="./logo.png" alt="logo" />
       <h1 className={styles.home__title}>MTG Card Finder</h1>
       <div className={styles.home__image}>
         <img src={img} alt="cards image" />

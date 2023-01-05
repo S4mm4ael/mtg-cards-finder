@@ -26,8 +26,10 @@
   cursor:default;
 }
 .home__title{
+  font-weight: 800;
   text-align: center;
   cursor:default;
+  
 }
 .home__image{
   width: auto;
@@ -42,4 +44,8 @@
 }
 .home__button:hover{
   transform: scale(1.1);
+}
+.logo{
+  height: 70px;
+  
 }
