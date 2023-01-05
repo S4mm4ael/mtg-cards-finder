@@ -56,7 +56,7 @@ function CardDetails(props: { id: string }) {
       }}
       className={styles.card__section}
     >
-      <Link className={styles.card__details} to={`/`}>
+      <Link className={styles.card__details} to={`/cards`}>
         Back
       </Link>
       {error && <div>{error}</div>}
