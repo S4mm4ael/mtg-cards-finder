@@ -126,3 +126,14 @@ label{
 .required{
 font-size: 0.7rem;
 }
+@media (max-width: 650px) {
+  .add__table{
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+  }
+  .add__text{
+    width: 100%;
+    gap: 10px;
+  }
+}

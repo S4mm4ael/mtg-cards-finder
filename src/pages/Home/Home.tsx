@@ -9,7 +9,7 @@ function About(): JSX.Element {
       <img className={styles.logo} src="./logo.png" alt="logo" />
       <h1 className={styles.home__title}>MTG Card Finder</h1>
       <div className={styles.home__image}>
-        <img src={img} alt="cards image" />
+        <img className={styles.home__img} src={img} alt="cards image" />
       </div>
       <p className={styles.home__text}>
         Simply React Native app, that helps you to find Magic: The Gathering cards
