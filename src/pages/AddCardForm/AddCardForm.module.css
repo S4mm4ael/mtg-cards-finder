@@ -1,0 +1,128 @@
+.active{
+  transform: scale(1.5);
+}
+
+.add__section{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px;
+  min-height: calc(100vh - 70px);
+  background: rgb(233,229,231);
+  background: linear-gradient(180deg, rgba(233,229,231,1) 0%, rgba(56,81,94,0.8127626050420168) 83%);
+}
+.add__table{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+.add__text{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  height: 45px;
+  font-size: 1.2rem;
+  gap: 20px;
+}
+.add__checkbox{
+ display: flex;
+ width: 100%;
+ justify-content: space-between;
+ align-items: center;
+ flex-direction: row;
+ height: 55px;
+ gap: 20px;
+ font-size: 1.2rem;
+}
+.add__table{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: rgba(220, 210, 230, 0.5);
+  border-radius: 20px;
+  box-shadow: 10px 5px 5px rgb(119 119 119);
+    
+}
+.card__color{
+  height: 15px;
+  width: 15px;
+  border-radius: 7.5px;
+  border: 1px black solid ;
+  transition: .3s;
+}
+.card__color:hover{
+  transform: scale(1.3);
+}
+.card__checkbox{
+  display: flex;
+  width: 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+label{
+  width: 500px;
+}
+.textbox{
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.color__wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.color__label{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 40px;
+  width: 20px;
+}
+.checkbox__wrapper{
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.hidden__checkbox{
+  display: hidden;
+}
+.addcard__wrapper{
+  width: 100vh;
+  background-color: #b3b3b3;
+}
+.flex__center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+}
+.submit__button{
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.input__wrapper{
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  height: 45px;
+}
+.hidden{
+  display: none;
+}
+.required{
+font-size: 0.7rem;
+}
