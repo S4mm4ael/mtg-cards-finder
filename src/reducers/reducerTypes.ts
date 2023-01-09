@@ -1,12 +1,15 @@
 export enum ActionKind {
+  // Pagination
   UpdateUrl = 'UPDATE_URL',
-  UpdateMin = 'UPDATE_MIN',
   NextPage = 'NEXT_PAGE',
   PrevPage = 'PREV_PAGE',
   ExactPage = 'EXACT_PAGE',
   Sort = 'SORT',
   Count = 'COUNT',
+  // Other
+  UpdateMin = 'UPDATE_MIN',
   CardId = 'CARD_ID',
+  // Search
   IsSearching = 'IS_SEARCHING',
   SetQuery = 'SET_QUERY',
 }
