@@ -12,3 +12,5 @@ const otherReducer = createReducer(initialState, (builder) => {
     state.id = action.payload;
   });
 });
+
+export default otherReducer;

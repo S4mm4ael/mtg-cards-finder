@@ -28,3 +28,5 @@ const paginationReducer = createReducer(initialState, (builder) => {
     state.count = action.payload;
   });
 });
+
+export default paginationReducer;

@@ -12,3 +12,5 @@ const searchReducer = createReducer(initialState, (builder) => {
     state.query = action.payload;
   });
 });
+
+export default searchReducer;
