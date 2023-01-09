@@ -9,7 +9,7 @@ import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './pages/AddCardForm/AddCardForm';
 import { GlobalContext } from 'contexts/Context';
 import { reducer } from 'reducers/reducer';
-import { ActionKind } from 'reducers/reducerTypes';
+import { ActionKind, State } from 'reducers/reducerTypes';
 import CardDetails from 'pages/CardDetails/CardDetails';
 import Home from 'pages/Home/Home';
 
@@ -28,7 +28,7 @@ function App() {
     id: '',
     isSearching: false,
     query: '',
-  };
+  } as State;
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

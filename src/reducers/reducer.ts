@@ -12,7 +12,6 @@ export function reducer(state: State, action: Action) {
       return { ...state, payload };
     case ActionKind.NextPage:
       state.page = state.page + 1;
-
       return { ...state, payload };
     case ActionKind.PrevPage:
       if (state.page != 1) {
