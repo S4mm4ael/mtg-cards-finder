@@ -3,12 +3,18 @@ import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
-import { getSearchedCard } from 'utils/fetch';
 import Pagination from 'components/Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
+
+  //
+  const dispatch = useDispatch();
+  const minimized = useSelector((state) => state.min);
+  //
+  console.log(minimized);
 
   const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
     useContext(GlobalContext);
