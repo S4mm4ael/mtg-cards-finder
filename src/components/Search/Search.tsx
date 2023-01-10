@@ -5,13 +5,13 @@ import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
 import Pagination from 'components/Pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store/store';
+import { AppDispatch, RootState } from 'store/store';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const minimized = useSelector((state: RootState) => state.paginationReducer.min);
 
   const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
@@ -25,6 +25,10 @@ function Search(): JSX.Element {
     setIsSearching(true);
     setLocalStorage(query);
     query.length > 3 ? (setSearchingQuery(query), setSearchValid(true)) : setSearchValid(false);
+  }
+
+  function turnMinimized(): void {
+    dispatch({ type: setMin });
   }
 
   return (
@@ -61,7 +65,7 @@ function Search(): JSX.Element {
               name="minimaze"
               type="checkbox"
               onChange={() => {
-                state.min ? setMin(false) : setMin(true);
+                turnMinimized();
               }}
             />
             <div className="toggler-slider">
