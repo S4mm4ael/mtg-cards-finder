@@ -5,16 +5,14 @@ import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
 import Pagination from 'components/Pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
-  //
   const dispatch = useDispatch();
-  const minimized = useSelector((state) => state.min);
-  //
-  console.log(minimized);
+  const minimized = useSelector((state: RootState) => state.paginationReducer.min);
 
   const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
     useContext(GlobalContext);
