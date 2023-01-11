@@ -12,9 +12,8 @@ function SearchResultFetch() {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
-  const { isSearching, query, sort, page, count } = useSelector(
-    (state: RootState) => state.otherReducer
-  );
+  const { sort, page, count } = useSelector((state: RootState) => state.paginationReducer);
+  const { isSearching, query } = useSelector((state: RootState) => state.searchReducer);
 
   const cardSort = (cards: ICard[] | null | undefined, isReverse: boolean) => {
     const newCards =

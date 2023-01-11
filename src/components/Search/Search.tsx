@@ -9,7 +9,8 @@ import { AppDispatch, RootState } from 'store/store';
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
-  const { min, count, sort } = useSelector((state: RootState) => state.otherReducer);
+  const { min } = useSelector((state: RootState) => state.otherReducer);
+  const { count, sort } = useSelector((state: RootState) => state.paginationReducer);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -93,6 +94,7 @@ function Search(): JSX.Element {
               value={sort}
               onChange={(e) => {
                 setSort(e.target.value);
+                console.log(sort);
               }}
             >
               <option value="A-Z">A-Z</option>

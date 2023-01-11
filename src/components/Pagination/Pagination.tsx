@@ -6,7 +6,8 @@ import { AppDispatch, RootState } from 'store/store';
 
 function Pagination() {
   const dispatch: AppDispatch = useDispatch();
-  const { page, url, isSearching } = useSelector((state: RootState) => state.paginationReducer);
+  const { page, url } = useSelector((state: RootState) => state.paginationReducer);
+  const isSearching = useSelector((state: RootState) => state.searchReducer.isSearching);
 
   function movePage(movePage: boolean) {
     movePage ? dispatch({ type: 'NEXT_PAGE' }) : dispatch({ type: 'PREV_PAGE' });
@@ -31,6 +32,7 @@ function Pagination() {
               setSearching(false);
               setExactPage(1);
             }}
+            className={styles.back__button}
           >
             Back
           </button>
