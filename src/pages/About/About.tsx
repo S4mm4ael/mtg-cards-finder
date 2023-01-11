@@ -19,6 +19,9 @@ function About(): JSX.Element {
           MTG API
         </a>
       </p>
+      <p>
+        <a href="https://github.com/S4mm4ael/mtg-cards-finder">Source code</a>
+      </p>
     </section>
   );
 }
