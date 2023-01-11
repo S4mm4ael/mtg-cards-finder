@@ -4,12 +4,17 @@ import '../../index.css';
 import { ICard } from './ICard';
 import { GlobalContext } from 'contexts/Context';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 export function Card(props: ICard): JSX.Element {
-  const { setCardId, state } = useContext(GlobalContext);
+  const { setCardId } = useContext(GlobalContext);
+  const minimized = useSelector((state: RootState) => state.otherReducer.min);
   const [isLoaded, setIsLoaded] = useState(true);
+
   return (
     <div
+      onClick={() => console.log(minimized)}
       id={`card-${props.id}`}
       style={{
         background: `linear-gradient(180deg, #ffffff 0%, ${props.colors?.map((color: string) => {
@@ -41,7 +46,7 @@ export function Card(props: ICard): JSX.Element {
         </div>
       )}
       <img
-        style={state.min ? { display: 'none' } : { display: 'block' }}
+        style={minimized ? { display: 'none' } : { display: 'block' }}
         className={styles.card__img}
         width={200}
         src={`${props.image ? URL.createObjectURL(props.image) : props.imageUrl}`}

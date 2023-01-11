@@ -4,18 +4,16 @@ import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
 import { GlobalContext } from 'contexts/Context';
 import Pagination from 'components/Pagination/Pagination';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from 'store/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from 'store/store';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
 
   const dispatch: AppDispatch = useDispatch();
-  const minimized = useSelector((state: RootState) => state.paginationReducer.min);
 
-  const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
-    useContext(GlobalContext);
+  const { setSort, setCount, setIsSearching, setSearchingQuery, state } = useContext(GlobalContext);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -28,7 +26,7 @@ function Search(): JSX.Element {
   }
 
   function turnMinimized(): void {
-    dispatch({ type: setMin });
+    dispatch({ type: 'UPDATE_MIN' });
   }
 
   return (
