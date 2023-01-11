@@ -12,7 +12,7 @@ function About(): JSX.Element {
         <img className={styles.home__img} src={img} alt="cards image" />
       </div>
       <p className={styles.home__text}>
-        Simply React Native app, that helps you to find Magic: The Gathering cards
+        Simply React+Redux app, that helps you to find Magic: The Gathering cards
       </p>
       <Link id="main-page" to="/cards" className={styles.home__button}>
         Try it
