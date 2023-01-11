@@ -1,17 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import styles from '../Card/Card.module.css';
 import { Card } from 'components/Card/Card';
 import { ICard } from 'components/Card/ICard';
 import { getCards, getSearchedCard } from 'utils/fetch';
-import { GlobalContext } from 'contexts/Context';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function SearchResultFetch() {
   const [cardsList, setCardsList] = useState<ICard[] | null | undefined>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
-
-  const { state } = useContext(GlobalContext);
+  const { sort, page, count } = useSelector((state: RootState) => state.paginationReducer);
+  const { isSearching, query } = useSelector((state: RootState) => state.searchReducer);
 
   const cardSort = (cards: ICard[] | null | undefined, isReverse: boolean) => {
     const newCards =
@@ -35,15 +37,15 @@ function SearchResultFetch() {
 
   function getData(isSearching: boolean) {
     if (isSearching) {
-      return getSearchedCard(state.query);
+      return getSearchedCard(query);
     }
-    return getCards(state.page);
+    return getCards(page);
   }
 
   useEffect(() => {
     setIsPending(true);
     setNothing(false);
-    getData(state.isSearching)
+    getData(isSearching)
       .then((data) => {
         setCardsList(data.cards);
         setIsPending(false);
@@ -54,12 +56,12 @@ function SearchResultFetch() {
         setIsPending(false);
         setError(err.message);
       });
-    handleSorting(state.sort);
-  }, [state.page, state.isSearching, state.query]);
+    handleSorting(sort);
+  }, [page, isSearching, query]);
 
   useEffect(() => {
-    handleSorting(state.sort);
-  }, [state.sort, handleSorting, state.page]);
+    handleSorting(sort);
+  }, [sort, handleSorting, page]);
 
   return (
     <section className={styles.card__section}>
@@ -73,7 +75,7 @@ function SearchResultFetch() {
       <div className={styles.render__result}>
         {cardsList &&
           cardsList.map((item, index) => {
-            if (item.imageUrl && index <= state.count) {
+            if (item.imageUrl && index <= count) {
               return (
                 <Card
                   key={index}

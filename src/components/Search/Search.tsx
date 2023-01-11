@@ -1,26 +1,46 @@
 import SearchResultFetch from 'components/SearchResultFetch/SearchResultFetch';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Search.module.css';
 import { setLocalStorage, getLocalStorage } from './setLocalStorage';
-import { GlobalContext } from 'contexts/Context';
-import { getSearchedCard } from 'utils/fetch';
 import Pagination from 'components/Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from 'store/store';
 
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
+  const { min } = useSelector((state: RootState) => state.otherReducer);
+  const { count, sort } = useSelector((state: RootState) => state.paginationReducer);
 
-  const { setMin, setSort, setCount, setIsSearching, setSearchingQuery, state } =
-    useContext(GlobalContext);
+  const dispatch: AppDispatch = useDispatch();
+
+  function setSearching(isSearching: boolean) {
+    dispatch({ type: 'IS_SEARCHING', payload: isSearching });
+  }
+
+  function setSort(sort: string) {
+    dispatch({ type: 'SORT', payload: sort });
+  }
+  function setCount(count: number) {
+    dispatch({ type: 'COUNT', payload: count });
+  }
+
+  function setSearchingQuery(query: string) {
+    dispatch({ type: 'SET_QUERY', payload: query });
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     handleChange(query);
   }
   function handleChange(query: string): void {
-    setIsSearching(true);
+    setSearching(true);
     setLocalStorage(query);
     query.length > 3 ? (setSearchingQuery(query), setSearchValid(true)) : setSearchValid(false);
+  }
+
+  function turnMinimized(): void {
+    dispatch({ type: 'UPDATE_MIN' });
   }
 
   return (
@@ -57,14 +77,12 @@ function Search(): JSX.Element {
               name="minimaze"
               type="checkbox"
               onChange={() => {
-                state.min ? setMin(false) : setMin(true);
+                turnMinimized();
               }}
             />
             <div className="toggler-slider">
               <div
-                className={
-                  state.min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'
-                }
+                className={min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'}
               ></div>
             </div>
           </label>
@@ -73,9 +91,10 @@ function Search(): JSX.Element {
           <div className={styles.sorting__wrap}>
             <p>Sorting:</p>
             <select
-              value={state.sort}
+              value={sort}
               onChange={(e) => {
                 setSort(e.target.value);
+                console.log(sort);
               }}
             >
               <option value="A-Z">A-Z</option>
@@ -85,7 +104,7 @@ function Search(): JSX.Element {
           <div className={styles.sorting__wrap}>
             <p>Cards per page:</p>
             <select
-              value={state.count}
+              value={count}
               onChange={(e) => {
                 setCount(+e.target.value);
               }}

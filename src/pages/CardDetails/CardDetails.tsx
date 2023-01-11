@@ -1,23 +1,23 @@
-import { GlobalContext } from 'contexts/Context';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getCard } from '../../utils/fetch';
 import ICardDetails from './ICardDetails';
 import styles from './CardDetails.module.css';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function CardDetails(props: { id: string }) {
+  const cardId = useSelector((state: RootState) => state.otherReducer.id);
   const [card, setCard] = useState<ICardDetails | null | undefined>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [nothing, setNothing] = useState(false);
   const [isLoaded, setIsLoaded] = useState(true);
 
-  const { state } = useContext(GlobalContext);
-
   useEffect(() => {
     setIsPending(true);
     setNothing(false);
-    getCard(state.id)
+    getCard(cardId)
       .then((data) => {
         setCard(data.card);
         setIsPending(false);
@@ -28,7 +28,7 @@ function CardDetails(props: { id: string }) {
         setIsPending(false);
         setError(err.message);
       });
-  }, [state.id]);
+  }, [cardId]);
 
   return (
     <section
@@ -56,7 +56,7 @@ function CardDetails(props: { id: string }) {
       }}
       className={styles.card__section}
     >
-      <Link className={styles.card__details} to={`/`}>
+      <Link className={styles.card__details} to={`/cards`}>
         Back
       </Link>
       {error && <div>{error}</div>}
@@ -72,7 +72,6 @@ function CardDetails(props: { id: string }) {
           <div className={styles.card__wrapper}>
             <div className={styles.wrapper__left}>
               <img
-                style={state.min ? { display: 'none' } : { display: 'block' }}
                 className={styles.card__img}
                 width={300}
                 src={`${card && card.imageUrl}`}

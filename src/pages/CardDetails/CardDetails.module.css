@@ -12,7 +12,6 @@ justify-content: center;
 
 .card__title{
   font-size: 2rem;
-  font-weight: 600;
   margin: 0;
   pointer-events: none;
 }
@@ -94,11 +93,12 @@ justify-content: center;
 .card__wrapper{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .wrapper__left,
 .wrapper__right {
   
-  width: 50vh;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,10 +108,9 @@ justify-content: center;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
+  
 }
-.list__titles{
-  font-weight: 600;
-}
+
 .attributes__list{
   display: flex;
   flex-direction: column;
@@ -136,7 +135,6 @@ justify-content: center;
   padding: 2px;
   border-radius: 5px;
   background-color: rgba(195, 195, 195, 0.983);
-  font-weight: 600;
 }
 .list__flavor{
   font-style: italic;
@@ -154,4 +152,11 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+@media (max-width: 900px) {
+  .card__wrapper{
+    flex-direction: column;
+    align-items: center;
+  }
+ 
 }

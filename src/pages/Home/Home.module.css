@@ -33,7 +33,9 @@
 }
 .home__image{
   width: auto;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .home__button{
   background-color: rgb(0, 0, 0);
@@ -47,5 +49,9 @@
 }
 .logo{
   height: 70px;
+  
+}
+.home__img{
+  width: 100%;
   
 }
