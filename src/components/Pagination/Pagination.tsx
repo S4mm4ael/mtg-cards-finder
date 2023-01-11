@@ -1,23 +1,36 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './Pagination.module.css';
-
 import { getCards } from 'utils/fetch';
-import { GlobalContext } from 'contexts/Context';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from 'store/store';
 
 function Pagination() {
-  const { setPage, setIsSearching, setExactPage, state } = useContext(GlobalContext);
+  const dispatch: AppDispatch = useDispatch();
+  const page = useSelector((state: RootState) => state.paginationReducer.page);
+  const url = useSelector((state: RootState) => state.paginationReducer.url);
+  const isSearching = useSelector((state: RootState) => state.searchReducer.isSearching);
+
+  function movePage(movePage: boolean) {
+    movePage ? dispatch({ type: 'NEXT_PAGE' }) : dispatch({ type: 'PREV_PAGE' });
+  }
+  function setSearching(isSearching: boolean) {
+    dispatch({ type: 'IS_SEARCHING', payload: isSearching });
+  }
+  function setExactPage(page: number) {
+    dispatch({ type: 'EXACT_PAGE', payload: page });
+  }
 
   useEffect(() => {
-    getCards(state.page);
-  }, [state.page, state.url]);
+    getCards(page);
+  }, [page, url]);
 
   return (
     <>
-      {state.isSearching && (
+      {isSearching && (
         <div>
           <button
             onClick={() => {
-              setIsSearching(false);
+              setSearching(false);
               setExactPage(1);
             }}
           >
@@ -26,15 +39,15 @@ function Pagination() {
           <p>Search results:</p>
         </div>
       )}
-      {!state.isSearching && (
+      {!isSearching && (
         <div className={styles.pagination}>
-          <a href="#" onClick={() => setPage(false)}>
+          <a href="#" onClick={() => movePage(false)}>
             ❮
           </a>
-          <div onClick={() => setPage(false)}>{state.page > 1 ? state.page - 1 : <p></p>}</div>
-          <div>{state.page}</div>
-          <div onClick={() => setPage(true)}>{state.page + 1}</div>
-          <a href="#" onClick={() => setPage(true)}>
+          <div onClick={() => movePage(false)}>{page > 1 ? page - 1 : <p></p>}</div>
+          <div>{page}</div>
+          <div onClick={() => movePage(true)}>{page + 1}</div>
+          <a href="#" onClick={() => movePage(true)}>
             ❯
           </a>
         </div>

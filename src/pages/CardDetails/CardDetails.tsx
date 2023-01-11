@@ -1,5 +1,4 @@
-import { GlobalContext } from 'contexts/Context';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getCard } from '../../utils/fetch';
 import ICardDetails from './ICardDetails';
 import styles from './CardDetails.module.css';

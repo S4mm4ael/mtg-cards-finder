@@ -14,7 +14,7 @@ export const initialState: CounterState = {
   min: false,
   page: 1,
   sort: 'A-Z',
-  count: 10,
+  count: 20,
   id: '',
   isSearching: false,
   query: '',
