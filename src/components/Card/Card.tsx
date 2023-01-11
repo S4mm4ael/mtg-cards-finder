@@ -9,7 +9,6 @@ import { AppDispatch, RootState } from 'store/store';
 export function Card(props: ICard): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
   const minimized = useSelector((state: RootState) => state.otherReducer.min);
-
   const [isLoaded, setIsLoaded] = useState(true);
 
   function handleIdSelect(id: string): void {

@@ -6,9 +6,7 @@ import { AppDispatch, RootState } from 'store/store';
 
 function Pagination() {
   const dispatch: AppDispatch = useDispatch();
-  const page = useSelector((state: RootState) => state.paginationReducer.page);
-  const url = useSelector((state: RootState) => state.paginationReducer.url);
-  const isSearching = useSelector((state: RootState) => state.searchReducer.isSearching);
+  const { page, url, isSearching } = useSelector((state: RootState) => state.paginationReducer);
 
   function movePage(movePage: boolean) {
     movePage ? dispatch({ type: 'NEXT_PAGE' }) : dispatch({ type: 'PREV_PAGE' });

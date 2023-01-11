@@ -9,9 +9,7 @@ import { AppDispatch, RootState } from 'store/store';
 function Search(): JSX.Element {
   const [query, setQuery] = useState(getLocalStorage());
   const [searchValid, setSearchValid] = useState(true);
-  const minimized = useSelector((state: RootState) => state.otherReducer.min);
-  const count = useSelector((state: RootState) => state.searchReducer.count);
-  const sort = useSelector((state: RootState) => state.searchReducer.sort);
+  const { min, count, sort } = useSelector((state: RootState) => state.otherReducer);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -83,9 +81,7 @@ function Search(): JSX.Element {
             />
             <div className="toggler-slider">
               <div
-                className={
-                  minimized ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'
-                }
+                className={min ? 'toggler-knob style-9' : 'toggler-wrapper toggler-knob checked'}
               ></div>
             </div>
           </label>

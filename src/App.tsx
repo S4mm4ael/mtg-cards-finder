@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
@@ -7,9 +7,6 @@ import stylesApp from './App.module.css';
 import styles from './components/Header/Header.module.css';
 import { Route, Routes, useLocation, Link } from 'react-router-dom';
 import AddCardForm from './pages/AddCardForm/AddCardForm';
-import { GlobalContext } from 'contexts/Context';
-import { reducer } from 'reducers/reducer';
-import { ActionKind, State } from 'reducers/reducerTypes';
 import CardDetails from 'pages/CardDetails/CardDetails';
 import Home from 'pages/Home/Home';
 import { useSelector } from 'react-redux';
@@ -19,51 +16,7 @@ function App() {
   const location = useLocation();
   const path: string = location.pathname;
   const cardId = useSelector((state: RootState) => state.otherReducer.id);
-  const initialUrl = 'https://api.magicthegathering.io/v1/cards';
-  const initialMin = false;
-  const initialPage = 1;
-  const initialState = {
-    url: initialUrl,
-    min: initialMin,
-    page: initialPage,
-    sort: 'A-Z',
-    count: 10,
-    id: '',
-    isSearching: false,
-    query: '',
-  } as State;
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  function setMin() {
-    dispatch({ type: ActionKind.UpdateMin, payload: '' });
-  }
-  function setUrl(newUrl: string) {
-    dispatch({ type: ActionKind.UpdateUrl, payload: newUrl });
-  }
-  function setPage(nextPage: boolean) {
-    nextPage
-      ? dispatch({ type: ActionKind.NextPage, payload: 'next' })
-      : dispatch({ type: ActionKind.PrevPage, payload: 'prev' });
-  }
-  function setExactPage(page: number) {
-    dispatch({ type: ActionKind.ExactPage, payload: page });
-  }
-  function setSort(sort: string) {
-    dispatch({ type: ActionKind.Sort, payload: sort });
-  }
-  function setCount(count: number) {
-    dispatch({ type: ActionKind.Count, payload: count });
-  }
-  function setCardId(id: string) {
-    dispatch({ type: ActionKind.CardId, payload: id });
-  }
-  function setIsSearching(isSearching: boolean) {
-    dispatch({ type: ActionKind.IsSearching, payload: isSearching });
-  }
-  function setSearchingQuery(query: string) {
-    dispatch({ type: ActionKind.SetQuery, payload: query });
-  }
   function getCurrentTitle() {
     switch (path) {
       case '/':
@@ -80,38 +33,23 @@ function App() {
   }
 
   return (
-    <GlobalContext.Provider
-      value={{
-        setUrl,
-        setMin,
-        setPage,
-        setExactPage,
-        setSort,
-        setCount,
-        setCardId,
-        setIsSearching,
-        setSearchingQuery,
-        state,
-      }}
-    >
-      <div className={stylesApp.App}>
-        <div className={styles.header}>
-          <Link id="main-page" to="/">
-            <img className={styles.logo} src="./logo.png" alt="logo" />
-          </Link>
-          <div className={styles.header__title}>{getCurrentTitle()}</div>
-          <Header />
-        </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cards" element={<Main />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/addcard" element={<AddCardForm />} />
-          <Route path="/card/:id" element={<CardDetails id={cardId} />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
+    <div className={stylesApp.App}>
+      <div className={styles.header}>
+        <Link id="main-page" to="/">
+          <img className={styles.logo} src="./logo.png" alt="logo" />
+        </Link>
+        <div className={styles.header__title}>{getCurrentTitle()}</div>
+        <Header />
       </div>
-    </GlobalContext.Provider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cards" element={<Main />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/addcard" element={<AddCardForm />} />
+        <Route path="/card/:id" element={<CardDetails id={cardId} />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
 }
 
