@@ -1,20 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Card.module.css';
 import '../../index.css';
 import { ICard } from './ICard';
-import { GlobalContext } from 'contexts/Context';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from 'store/store';
 
 export function Card(props: ICard): JSX.Element {
-  const { setCardId } = useContext(GlobalContext);
+  const dispatch: AppDispatch = useDispatch();
   const minimized = useSelector((state: RootState) => state.otherReducer.min);
+
   const [isLoaded, setIsLoaded] = useState(true);
+
+  function handleIdSelect(id: string): void {
+    dispatch({ type: 'CARD_ID', payload: id });
+  }
 
   return (
     <div
-      onClick={() => console.log(minimized)}
       id={`card-${props.id}`}
       style={{
         background: `linear-gradient(180deg, #ffffff 0%, ${props.colors?.map((color: string) => {
@@ -89,7 +92,7 @@ export function Card(props: ICard): JSX.Element {
       ))}
       <Link
         className={styles.card__details}
-        onClick={() => setCardId(props.id)}
+        onClick={() => handleIdSelect(props.id)}
         to={`/card/${props.id}`}
       >
         More

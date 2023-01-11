@@ -12,10 +12,13 @@ import { reducer } from 'reducers/reducer';
 import { ActionKind, State } from 'reducers/reducerTypes';
 import CardDetails from 'pages/CardDetails/CardDetails';
 import Home from 'pages/Home/Home';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function App() {
   const location = useLocation();
   const path: string = location.pathname;
+  const cardId = useSelector((state: RootState) => state.otherReducer.id);
   const initialUrl = 'https://api.magicthegathering.io/v1/cards';
   const initialMin = false;
   const initialPage = 1;
@@ -104,7 +107,7 @@ function App() {
           <Route path="/cards" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/addcard" element={<AddCardForm />} />
-          <Route path="/card/:id" element={<CardDetails id={state.id} />} />
+          <Route path="/card/:id" element={<CardDetails id={cardId} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
